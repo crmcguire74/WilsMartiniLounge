@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wil's Martini Lounge — Andersonville, Chicago</title>
+<meta name="description" content="Wil's Martini Lounge. Classic cocktails, abstract nights, north side energy. 1478 W Catalpa Ave, Chicago. Best martinis in Andersonville.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --emerald:#0A2F28;
+  --emerald-deep:#06201B;
+  --black:#070908;
+  --amber:#E8A34C;
+  --brass:#B98A44;
+  --cream:#F4EFE6;
+  --white:#FFFFFF;
+  --muted:rgba(244,239,230,.72);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',-apple-system,Helvetica,Arial,sans-serif;
+  --max:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--cream);font-family:var(--sans);font-weight:300;line-height:1.65;font-size:17px;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--amber);text-decoration:none}
+h1,h2,h3{font-family:var(--serif);font-weight:600;color:var(--white);line-height:1.15}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.35em;text-transform:uppercase;color:var(--brass);font-weight:500;margin-bottom:18px}
+section{position:relative}
+
+/* ---------- Nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 28px;transition:background .4s ease,padding .4s ease,box-shadow .4s ease}
+.nav.scrolled{background:rgba(7,9,8,.95);padding:10px 28px;box-shadow:0 1px 0 rgba(185,138,68,.25)}
+@media (min-width:761px){
+  .nav.scrolled{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+}
+.nav.menu-open{backdrop-filter:none !important;-webkit-backdrop-filter:none !important;background:#070908}
+.nav-logo img{height:44px;width:auto;transition:height .4s ease}
+.nav.scrolled .nav-logo img{height:34px}
+.nav-links{display:flex;gap:28px;align-items:center;list-style:none}
+.nav-links a{color:var(--cream);font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:400;transition:color .25s}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--amber)}
+.btn{display:inline-block;padding:14px 32px;border:1px solid var(--brass);color:var(--white);font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;transition:background .3s,color .3s,border-color .3s;background:transparent;cursor:pointer}
+.btn:hover,.btn:focus-visible{background:var(--amber);border-color:var(--amber);color:var(--black)}
+.btn-solid{background:var(--amber);border-color:var(--amber);color:var(--black);font-weight:bolder;}
+.btn-solid:hover,.btn-solid:focus-visible{background:var(--white);border-color:var(--white)}
+.nav .btn{padding:10px 22px;font-size:12px}
+.nav-toggle{display:none;background:none;border:none;color:var(--cream);font-size:26px;cursor:pointer;line-height:1}
+
+/* ---------- Video sections ---------- */
+.video-bg{position:absolute;inset:0;overflow:hidden}
+.video-bg video,.video-bg img.vfallback{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,9,8,.62) 0%,rgba(10,47,40,.38) 40%,rgba(7,9,8,.82) 100%)}
+
+/* ---------- Hero ---------- */
+.hero{height:100svh;min-height:640px;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero-inner{position:relative;z-index:2;padding:0 24px;max-width:900px}
+.hero-logo{width:min(340px,64vw);margin:0 auto 34px;filter:drop-shadow(0 6px 30px rgba(0,0,0,.55))}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);letter-spacing:.01em;margin-bottom:16px;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.hero p.sub{font-size:clamp(1.05rem,2.1vw,1.4rem);color:var(--cream);letter-spacing:.06em;font-weight:300;margin-bottom:38px;text-shadow:0 2px 16px rgba(0,0,0,.7)}
+.hero-cta{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.scroll-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;color:var(--muted);font-size:11px;letter-spacing:.3em;text-transform:uppercase;text-align:center}
+.scroll-cue span{display:block;width:1px;height:44px;background:linear-gradient(180deg,var(--brass),transparent);margin:10px auto 0;animation:cue 2.4s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.25;transform:scaleY(.6);transform-origin:top}50%{opacity:1;transform:scaleY(1)}}
+
+/* ---------- Reveal / parallax ---------- */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+.reveal.from-l{transform:translateX(-64px)}
+.reveal.from-r{transform:translateX(64px)}
+.reveal.in{opacity:1;transform:none}
+.nav-links a.active{color:var(--amber)}
+.nav-links a.active::after{content:'';display:block;height:1px;background:var(--amber);margin-top:3px}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
+.mask{overflow:hidden}
+.mask img{transform:scale(1.12);transition:transform 1.4s cubic-bezier(.22,.61,.36,1)}
+.reveal.in .mask img,.mask.in img{transform:scale(1)}
+
+/* ---------- Lounge ---------- */
+.lounge{min-height:110svh;display:flex;align-items:center;padding:140px 0}
+.lounge .video-bg video,.lounge .video-bg img.vfallback{will-change:transform}
+.lounge-inner{position:relative;z-index:2;max-width:640px}
+.lounge h2{font-size:clamp(2rem,4.4vw,3.4rem);margin-bottom:22px}
+.lounge p{font-size:1.1rem;color:var(--cream);max-width:54ch}
+.reviews{position:relative;z-index:2;margin-top:70px}
+.reviews-track{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.review{background:rgba(7,9,8,.66);backdrop-filter:blur(8px);border:1px solid rgba(185,138,68,.3);padding:28px 26px}
+.review p{font-family:var(--serif);font-style:italic;font-size:1.02rem;color:var(--cream);margin-bottom:14px}
+.review cite{font-style:normal;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
+@media (min-width:761px){
+  .reviews{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 7%,#000 93%,transparent 100%)}
+  .reviews-track{display:flex;gap:0;width:max-content;will-change:transform;animation:reviews-flow 46s linear infinite}
+  .reviews:hover .reviews-track{animation-play-state:paused}
+  .reviews-track .review{flex:0 0 380px;margin-right:26px;transition:border-color .4s,background .4s}
+  .reviews-track .review:hover{border-color:var(--amber);background:rgba(7,9,8,.85)}
+  @keyframes reviews-flow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+}
+@media (prefers-reduced-motion:reduce){
+  .reviews-track{animation:none}
+}
+
+/* ---------- Featured ---------- */
+.featured{background:linear-gradient(180deg,var(--black),var(--emerald-deep) 55%,var(--black));padding:130px 0}
+.featured-head{text-align:center;max-width:680px;margin:0 auto 70px}
+.featured-head h2{font-size:clamp(2rem,4.2vw,3.2rem)}
+.featured-head p{color:var(--muted);margin-top:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.card{border:1px solid rgba(185,138,68,.35);background:rgba(10,47,40,.35);padding:38px 30px;position:relative;transition:transform .5s cubic-bezier(.22,.61,.36,1),border-color .4s,background .4s}
+.card:hover{transform:translateY(-8px);border-color:var(--amber);background:rgba(10,47,40,.6)}
+.card .tag{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:16px;display:block}
+.card h3{font-size:1.5rem;margin-bottom:10px}
+.card p{font-size:.95rem;color:var(--muted);margin-bottom:20px}
+.card .price{font-family:var(--serif);color:var(--amber);font-size:1.15rem}
+
+/* ---------- Menu ---------- */
+.menu-sec{padding:0;position:relative}
+.menu-bgwrap{position:sticky;top:0;height:0}
+.menu-sec .video-bg{position:absolute;inset:0}
+.menu-sec .scrim{background:linear-gradient(180deg,rgba(7,9,8,.9),rgba(6,32,27,.88) 30%,rgba(7,9,8,.92))}
+.menu-inner{position:relative;z-index:2;padding:130px 0 110px}
+.menu-head{text-align:center;margin-bottom:26px}
+.menu-head h2{font-size:clamp(2.1rem,4.4vw,3.4rem)}
+.menu-head .sizes{color:var(--muted);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;margin-top:14px}
+.menu-tabs-wrap{display:flex;align-items:center;gap:4px;margin:36px 0 60px;position:sticky;top:64px;z-index:5;padding:10px 8px;background:rgba(7,9,8,.72);backdrop-filter:blur(10px)}
+.menu-tabs{display:flex;gap:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scroll-behavior:smooth;-ms-overflow-style:none;scrollbar-width:none;padding:2px;justify-content:center;}
+.menu-tabs::-webkit-scrollbar{display:none}
+.menu-tabs button{flex:0 0 auto;background:transparent;border:1px solid rgba(185,138,68,.4);color:var(--cream);padding:10px 20px;font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .3s;white-space:nowrap}
+.menu-tabs button:hover{border-color:var(--amber);color:var(--amber)}
+.menu-tabs button.active{background:var(--amber);border-color:var(--amber);color:var(--black);font-weight:500}
+.tab-arrow{flex:0 0 auto;display:none;background:rgba(10,47,40,.6);border:1px solid rgba(185,138,68,.4);color:var(--amber);width:38px;height:40px;font-size:18px;line-height:1;cursor:pointer;transition:all .3s}
+.tab-arrow:hover{background:var(--amber);color:var(--black)}
+.menu-tabs-wrap.overflowing .tab-arrow{display:block}
+.menu-cat{max-width:820px;margin:0 auto 90px;transition:opacity .45s cubic-bezier(.22,.61,.36,1),transform .45s cubic-bezier(.22,.61,.36,1);}
+.menu-cat.hidden{display:none;}
+.menu-cat.anim-out{opacity:0;transform:translateY(28px) scale(.99)}
+.menu-cat.anim-in{opacity:0;transform:translateY(28px)}
+.menu-cat h3{font-size:clamp(1.6rem,3vw,2.2rem);text-align:center;margin-bottom:6px}
+.menu-cat .cat-sub{text-align:center;font-family:var(--serif);font-style:italic;color:var(--brass);margin-bottom:44px;font-size:1.05rem;}
+.mi{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:18px 0;border-bottom:1px solid rgba(185,138,68,.18);margin-left:10px;margin-right:10px;}
+.mi:last-child{border-bottom:none}
+.mi .info h4{font-family:var(--serif);font-weight:600;color:var(--white);font-size:1.15rem;letter-spacing:.02em}
+.mi .info p{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:52ch}
+.mi .p{font-family:var(--serif);color:var(--amber);white-space:nowrap;font-size:1.05rem}
+.menu-note{text-align:center;color:var(--muted);font-family:var(--serif);font-style:italic;margin-top:30px;font-size:1rem}
+.wine-group{margin-bottom:44px}
+.wine-group h4{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);font-family:var(--sans);font-weight:500;margin-bottom:14px;text-align:center}
+
+/* ---------- Owners ---------- */
+.owners{background:linear-gradient(180deg,var(--black) 0%,#0B342C 28%,#0B342C 72%,var(--black) 100%);padding:160px 0 140px}
+.owners-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
+.owners h2{font-size:clamp(2rem,4.2vw,3.2rem);margin-bottom:24px}
+.owners p{color:var(--cream);font-size:1.08rem;margin-bottom:18px;max-width:56ch}
+.owners .tagline{font-family:var(--serif);font-style:italic;color:var(--amber);font-size:1.3rem;margin-top:26px}
+.owner-photos{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.owner-photos figure:nth-child(1){transform:translateY(26px)}
+.owner-photos figure{margin:0}
+.owner-photos img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.owner-photos figcaption{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--brass);margin-top:12px;text-align:center}
+
+/* ---------- Gallery / social ---------- */
+.social-sec{padding:130px 0;background:var(--black)}
+.social-head{text-align:center;margin-bottom:70px}
+.social-head h2{font-size:clamp(2rem,4.2vw,3.2rem)}
+.social-head a.ig{display:inline-block;margin-top:16px;font-size:14px;letter-spacing:.2em;text-transform:uppercase}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.gcard{position:relative}
+.gcard img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.gcard:nth-child(2){transform:translateY(46px)}
+.gcard:nth-child(3){transform:translateY(14px)}
+.gcard:nth-child(5){transform:translateY(46px)}
+.gcard figcaption{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--brass);margin-top:12px}
+.social-cta{text-align:center;margin-top:110px}
+
+/* ---------- Hours / location ---------- */
+.visit{background:linear-gradient(180deg,var(--black),var(--emerald-deep));padding:130px 0}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px}
+.visit h2{font-size:clamp(2rem,4.2vw,3.2rem);margin-bottom:34px}
+.hours-table{width:100%;border-collapse:collapse}
+.hours-table td{padding:14px 0;border-bottom:1px solid rgba(185,138,68,.2);font-size:1.02rem}
+.hours-table td:last-child{text-align:right;color:var(--amber);font-family:var(--serif)}
+.visit address{font-style:normal;font-size:1.15rem;line-height:1.9;color:var(--cream);margin-bottom:28px}
+.visit address strong{font-family:var(--serif);font-size:1.3rem;color:var(--white);display:block;margin-bottom:6px}
+.visit .contact-lines{margin-bottom:34px}
+.visit .contact-lines a{display:block;padding:6px 0;color:var(--cream)}
+.visit .contact-lines a:hover{color:var(--amber)}
+.visit-cta{display:flex;gap:16px;flex-wrap:wrap}
+.reserve-note{margin-top:22px;font-family:var(--serif);font-style:italic;color:var(--brass)}
+
+/* ---------- Footer ---------- */
+.footer{position:relative;padding:0;text-align:center;background:var(--black)}
+.footer-video{position:relative;width:100%;line-height:0}
+.footer-video video{width:100%;height:auto;display:block}
+.footer-video::before{content:'';position:absolute;top:0;left:0;right:0;height:16%;background:linear-gradient(180deg,var(--emerald-deep) 0%,rgba(6,32,27,0) 100%);pointer-events:none}
+.footer-body{background:linear-gradient(180deg, #013a5a 0%, hsl(202 90% 12% / 1) 34%, hsl(202 98% 9% / 1) 100%);padding-top:1rem;padding-bottom:1rem;}
+.footer-tagline{font-family:var(--serif);font-style:italic;color:var(--cream);font-size:1.15rem;margin:0 0 34px}
+.footer-nav{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;padding:0 24px 38px}
+.footer-nav a{color:var(--muted);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.footer-nav a:hover{color:var(--amber)}
+.fine{border-top:1px solid rgba(185,138,68,.25);padding:26px 3px 36px;color:rgba(244,239,230,.6);font-size:12.5px;line-height:1.8;max-width:760px;margin:0 auto}
+
+/* ---------- Responsive ---------- */
+@media (max-width:920px){
+  .owners-grid,.visit-grid{grid-template-columns:1fr;gap:50px}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .gcard:nth-child(n){transform:none}
+  .gcard:nth-child(even){transform:translateY(30px)}
+}
+@media (max-width:760px){
+  .nav-links{position:fixed;top:0;left:0;width:100vw;height:100dvh;background:#070908;flex-direction:column;justify-content:flex-start;gap:30px;display:none;overflow-y:auto;padding:84px 24px 40px;margin:0;z-index:105}
+  .nav-links.open{display:flex}
+  .nav-links li:first-child{margin-top:auto}
+  .nav-links li:last-child{margin-bottom:auto}
+  .nav-links a{font-size:17px}
+  .nav-toggle{display:block;z-index:110;position:relative}
+  .menu-tabs-wrap{top:56px}
+  .gallery{grid-template-columns:1fr}
+  .gcard:nth-child(n){transform:none}
+  .owner-photos figure:nth-child(1){transform:none}
+  .lounge{min-height:88svh}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .mask img{transform:none;transition:none}
+  .scroll-cue span{animation:none}
+}
+</style>
+</head>
+<body style="overflow-x:hidden;">
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="nav-logo" href="#top" aria-label="Wil's Martini Lounge home"><img src="logo_white.svg" alt="Wil's Martini Lounge"></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#lounge">The Lounge</a></li>
+    <li><a href="#featured">Featured</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#owners">Wil &amp; Charlie</a></li>
+    <li><a href="#visit">Hours &amp; Location</a></li>
+    <li><a class="btn btn-solid" href="mailto:wilsreservation@gmail.com?subject=Reservation%20Request">Reserve</a></li>
+  </ul>
+</header>
+
+<!-- ============ 1. HERO ============ -->
+<section class="hero" id="top">
+  <div class="video-bg" data-parallax="0.25">
+    <video autoplay muted loop playsinline poster="videos/posters/hero.jpg" aria-hidden="true">
+      <source src="videos/hero.mp4" type="video/mp4">
+    </video>
+    <img class="vfallback" src="videos/posters/hero.jpg" alt="" aria-hidden="true" style="display:none">
+    <div class="scrim"></div>
+  </div>
+  <div class="hero-inner">
+    <img class="hero-logo reveal in" src="logo_white.svg" alt="Wil's Martini Lounge logo">
+    <h1>Wil&rsquo;s Martini Lounge</h1>
+    <p class="sub">Classic cocktails. Abstract nights. North side energy.</p>
+    <div class="hero-cta">
+      <a class="btn btn-solid" href="#menu">View Menu</a>
+      <a class="btn" href="#visit">Visit Us</a>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">Scroll<span></span></div>
+</section>
+
+<!-- ============ 2. THE LOUNGE ============ -->
+<section class="lounge" id="lounge">
+  <div class="video-bg" data-parallax="0.35">
+    <video autoplay muted loop playsinline poster="videos/posters/video2shakingmartini.jpg" aria-hidden="true">
+      <source src="videos/video2shakingmartini.mp4" type="video/mp4">
+    </video>
+    <div class="scrim"></div>
+  </div>
+  <div class="wrap">
+    <div class="lounge-inner">
+      <p class="eyebrow reveal">The Lounge</p>
+      <h2 class="reveal d1">A timeless room behind the wavy wall</h2>
+      <p class="reveal d2">Tucked on a quiet corner of Catalpa Avenue in Andersonville, Wil&rsquo;s is a small, dark, art-forward room built for slow nights and cold martinis. Copper light, tufted leather, a pressed-tin ceiling, and the abstract mural that gives the whole place its pulse. Come as a regular, leave as family.</p>
+    </div>
+    <div class="reviews reveal">
+      <div class="reviews-track" id="reviewsTrack">
+        <blockquote class="review"><p>&ldquo;Welcome Wil&rsquo;s. Great addition to the neighborhood. Beautiful space and great to see so many familiar faces.&rdquo;</p><cite>&mdash; Steven P.</cite></blockquote>
+        <blockquote class="review"><p>&ldquo;Absolutely fell in love with this place and the staff! Thanks for carrying on the Andersonville martini tradition. Best martinis in Chicago!&rdquo;</p><cite>&mdash; Khenemet</cite></blockquote>
+        <blockquote class="review"><p>&ldquo;Been waiting for this to open and it&rsquo;s been worth the wait. So happy for Wil &amp; Charlie.&rdquo;</p><cite>&mdash; Neighborhood guest</cite></blockquote>
+        <blockquote class="review"><p>&ldquo;The new space is beautiful! Love all the familiar faces of the bartenders and the drinks are on point!&rdquo;</p><cite>&mdash; Neighborhood guest</cite></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. FEATURED MARTINIS ============ -->
+<section class="featured" id="featured">
+  <div class="wrap">
+    <div class="featured-head">
+      <p class="eyebrow reveal">Featured Martinis</p>
+      <h2 class="reveal d1">Poured cold. Built to linger.</h2>
+      <p class="reveal d2">Every drink comes in two pours &mdash; a full 10&nbsp;oz or an easy 6&nbsp;oz.</p>
+    </div>
+    <div class="cards">
+      <article class="card reveal"><span class="tag">Signature</span><h3>Charlie&rsquo;s Cosmo</h3><p>Botanical grapefruit and rose vodka, triple sec, cranberry juice, and lime juice, with a lemon twist.</p><span class="price">$18 / $13</span></article>
+      <article class="card reveal d1"><span class="tag">Classic</span><h3>Espresso Martini</h3><p>Vanilla vodka and coffee liqueur, with a coffee bean garnish.</p><span class="price">$17 / $12</span></article>
+      <article class="card reveal d2"><span class="tag">Classic</span><h3>Dirty Martini</h3><p>Vodka and olive juice, with blue cheese&ndash;stuffed olives.</p><span class="price">$16 / $11</span></article>
+      <article class="card reveal d3"><span class="tag">Fall Feature</span><h3>The Veteran</h3><p>Whiskey, honey, sour mix, and cardamom bitters, with an orange garnish.</p><span class="price">$18 / $13</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. FULL MENU ============ -->
+<section class="menu-sec" id="menu">
+  <div class="video-bg" data-parallax="0.2">
+    <video autoplay muted loop playsinline poster="videos/posters/martini.jpg" aria-hidden="true">
+      <source src="videos/martini.mp4" type="video/mp4">
+    </video>
+    <div class="scrim"></div>
+  </div>
+  <div class="menu-inner wrap">
+    <div class="menu-head">
+      <p class="eyebrow reveal">The Full Menu</p>
+      <h2 class="reveal d1">Wil&rsquo;s Martini Lounge</h2>
+      <p class="sizes reveal d2">Prices shown 10 oz / 6 oz</p>
+    </div>
+
+    <div class="menu-tabs-wrap">
+      <button class="tab-arrow" id="tabPrev" aria-label="Scroll categories left">&#8249;</button>
+      <nav class="menu-tabs" id="menuTabs" aria-label="Menu categories">
+        <button class="active" data-cat="classics">The Classics</button>
+        <button data-cat="signature">Signature Martinis</button>
+        <button data-cat="mocktails">Mocktails</button>
+        <button data-cat="sweetinis">Sweetinis</button>
+        <button data-cat="wine">Wine &amp; More</button>
+      </nav>
+      <button class="tab-arrow" id="tabNext" aria-label="Scroll categories right">&#8250;</button>
+    </div>
+
+    <div class="menu-cat" data-cat="classics" id="classics">
+      <h3>The Classics</h3>
+      <p class="cat-sub">The drinks that built the martini lounge.</p>
+      <div class="mi"><div class="info"><h4>Apple Martini</h4><p>Vodka and sour apple mix, with a cherry</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Cosmopolitan</h4><p>Vodka, triple sec, cranberry juice, and lime juice, with a lemon twist</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Dirty Martini</h4><p>Vodka and olive juice, with blue cheese-stuffed olives</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Espresso Martini</h4><p>Vanilla vodka and coffee liqueur, with a coffee bean garnish</p></div><span class="p">$17 / $12</span></div>
+      <div class="mi"><div class="info"><h4>French Martini</h4><p>Vodka, raspberry liqueur, and pineapple juice, with a lemon twist</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Lemon Drop</h4><p>Vodka, triple sec, and sour mix, with a sugar rim and lemon slice</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Long Day</h4><p>Vodka and dry vermouth rinse, with a lemon twist</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Pomegranate Martini</h4><p>Vodka and pomegranate syrup, with a lime wedge</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Razzle Dazzle</h4><p>Vodka, raspberry liqueur, sour mix, and cranberry juice, with a lemon twist</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Classic Martini</h4><p>Gin and dry vermouth, with a lemon twist</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>French 75</h4><p>Gin, sour mix, and a champagne float, with a sugar rim and lemon twist</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Negroni</h4><p>Gin, Campari, and sweet vermouth, with a lemon twist</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Park Avenue</h4><p>Gin, sweet vermouth, blue curacao, and pineapple juice, with a cherry</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Manhattan</h4><p>Whisky, sweet vermouth, and bitters, with a cherry</p></div><span class="p">$18 / $13</span></div>
+      <div class="mi"><div class="info"><h4>Margarita</h4><p>Tequila, triple sec, and sour mix, with a salted rim and lime wedge</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Rose Margarita</h4><p>Tequila, rose water syrup, triple sec, and sour mix, with a sugar rim, dried rosebud, and lime wedge</p></div><span class="p">$17 / $12</span></div>
+      <div class="mi"><div class="info"><h4>Pomegranate Margarita</h4><p>Tequila, pomegranate syrup, triple sec, and sour mix, with a sugar rim and lime wedge</p></div><span class="p">$17 / $12</span></div>
+      <div class="mi"><div class="info"><h4>Blueberry Margarita</h4><p>Tequila, blueberry syrup, triple sec, and sour mix, with a sugar rim and blueberries</p></div><span class="p">$17 / $12</span></div>
+      <p class="menu-note">In the mood for something you don&rsquo;t see? Other cocktails and mixed drinks available upon request.</p>
+    </div>
+
+    <div class="menu-cat hidden" data-cat="signature" id="signature">
+      <h3>Wil&rsquo;s Signature Martinis</h3>
+      <p class="cat-sub">Classy. Sassy. Definitely bad assy.</p>
+      <div class="mi"><div class="info"><h4>B.B.L.</h4><p>Vodka, blackberry syrup, and sour mix, with a sugar rim and lemon wedge</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Charlie&rsquo;s Cosmo</h4><p>Botanical grapefruit and rose vodka, triple sec, cranberry juice, and lime juice, with a lemon twist</p></div><span class="p">$18 / $13</span></div>
+      <div class="mi"><div class="info"><h4>Chilly Willy</h4><p>Blue raspberry vodka, blue curacao, and blue raspberry syrup, with blueberries</p></div><span class="p">$17 / $12</span></div>
+      <div class="mi"><div class="info"><h4>Dirty Shirley</h4><p>Vanilla vodka, amaretto, pineapple juice, grenadine, and ginger beer topper, with an orange and cherry garnish</p></div><span class="p">$17 / $12</span></div>
+      <div class="mi"><div class="info"><h4>Mary Pickles</h4><p>Vodka, pickle juice, and bloody mary mix, with a gherkin skewer</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Valentina Rose</h4><p>Vodka, rose water syrup, pomegranate syrup, and sour mix, with a dried rosebud garnish</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>The Veteran <em style="font-family:var(--sans);font-style:normal;font-size:11px;letter-spacing:.24em;color:var(--brass);vertical-align:middle">&nbsp;Fall Feature</em></h4><p>Whiskey, honey, sour mix, and cardamom bitters, with an orange garnish</p></div><span class="p">$18 / $13</span></div>
+    </div>
+
+    <div class="menu-cat hidden" data-cat="mocktails" id="mocktails">
+      <h3>Mocktails</h3>
+      <p class="cat-sub">Non-alcoholic deliciousness.</p>
+      <div class="mi"><div class="info"><h4>Virgin Apple</h4><p>Sour apple mix, sour mix, and lime juice, with a cherry</p></div><span class="p">$8 / $4</span></div>
+      <div class="mi"><div class="info"><h4>Virgin Charlie</h4><p>Grapefruit juice, rose water syrup, cranberry juice, and lime juice, with a lemon twist</p></div><span class="p">$8 / $4</span></div>
+      <div class="mi"><div class="info"><h4>Virgin Chilly Drop</h4><p>Sour mix, blue raspberry syrup, lime juice, and Sprite, with a sugar rim and lemon wedge</p></div><span class="p">$8 / $4</span></div>
+      <div class="mi"><div class="info"><h4>Virgin Pom</h4><p>Pomegranate syrup, cranberry juice, and lime juice, with a lime wedge</p></div><span class="p">$8 / $4</span></div>
+      <div class="mi"><div class="info"><h4>Virgin Shirley</h4><p>Pineapple juice, grenadine, and ginger beer, with an orange and cherry garnish</p></div><span class="p">$8 / $4</span></div>
+      <div class="mi"><div class="info"><h4>Virgin Mary Pickles</h4><p>Pickle juice and bloody mary mix, with a gherkin skewer</p></div><span class="p">$8 / $4</span></div>
+      <div class="mi"><div class="info"><h4>Virgin Rose</h4><p>Sour mix, rose water syrup, pomegranate syrup, and lime juice, with a dried rosebud garnish</p></div><span class="p">$8 / $4</span></div>
+    </div>
+
+    <div class="menu-cat hidden" data-cat="sweetinis" id="sweetinis">
+      <h3>Sweetinis</h3>
+      <p class="cat-sub">Because there&rsquo;s always room for dessert.</p>
+      <div class="mi"><div class="info"><h4>Chocolate</h4><p>Vodka, dark creme de cacao, and Irish cream, with a chocolate drizzle</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Key Lime</h4><p>Rum, vanilla liqueur, key lime juice, and cream, with a lime wedge</p></div><span class="p">$18 / $13</span></div>
+      <div class="mi"><div class="info"><h4>Pineapple Upside Down</h4><p>Vodka, vanilla liqueur, and pineapple juice, with a grenadine topper and a cherry</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Pretty Lady</h4><p>Vodka, dark creme de cacao, raspberry liqueur, and Irish cream, with a chocolate drizzle</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>Strawberry Shake</h4><p>Whipped vodka, strawberry liqueur, vanilla liqueur, and cream, with a strawberry drizzle</p></div><span class="p">$17 / $12</span></div>
+      <div class="mi"><div class="info"><h4>Thin Mintini</h4><p>Vodka, dark creme de cacao, creme de menthe, and Irish cream, with a chocolate drizzle</p></div><span class="p">$16 / $11</span></div>
+      <div class="mi"><div class="info"><h4>This is Bananas!</h4><p>Vodka, dark creme de cacao, banana liqueur, and Irish cream, with a chocolate drizzle</p></div><span class="p">$16 / $11</span></div>
+      <div class="wine-group" style="margin-top:56px">
+        <h4>Wil&rsquo;s Specialty Sweetinis</h4>
+        <div class="mi"><div class="info"><h4>Cream &amp; Sugar</h4><p>Whipped vodka, coffee liqueur, vanilla liqueur, and cream, garnished with coffee beans</p></div><span class="p">$17 / $12</span></div>
+        <div class="mi"><div class="info"><h4>Lover Boy</h4><p>Whipped vodka, amaretto, white creme de cacao, grenadine, and cream, with a chocolate drizzle and a cherry</p></div><span class="p">$17 / $12</span></div>
+        <div class="mi"><div class="info"><h4>Pat-stachio</h4><p>Whipped vodka, amaretto, blue curacao, and Irish cream, with a cherry</p></div><span class="p">$17 / $12</span></div>
+      </div>
+    </div>
+
+    <div class="menu-cat hidden" data-cat="wine" id="wine">
+      <h3>Wine &amp; More</h3>
+      <p class="cat-sub">Available by the glass or bottle.</p>
+      <div class="wine-group">
+        <h4>White &amp; Rose</h4>
+        <div class="mi"><div class="info"><h4>Pinot Grigio</h4></div><span class="p">$11 / $38</span></div>
+        <div class="mi"><div class="info"><h4>Chardonnay (oaked)</h4></div><span class="p">$11 / $38</span></div>
+        <div class="mi"><div class="info"><h4>Sauvignon Blanc</h4></div><span class="p">$11 / $38</span></div>
+        <div class="mi"><div class="info"><h4>Riesling</h4></div><span class="p">$11 / $38</span></div>
+        <div class="mi"><div class="info"><h4>Rose</h4></div><span class="p">$11 / $38</span></div>
+      </div>
+      <div class="wine-group">
+        <h4>Sparkling</h4>
+        <div class="mi"><div class="info"><h4>Mionetto Prosecco Brut</h4></div><span class="p">$11 glass</span></div>
+        <div class="mi"><div class="info"><h4>Mionetto Prosecco Gran Rose</h4></div><span class="p">$11 glass</span></div>
+        <div class="mi"><div class="info"><h4>Chandon (CA) Brut</h4></div><span class="p">$11 glass</span></div>
+        <div class="mi"><div class="info"><h4>Veuve Clicquot Yellow Label</h4></div><span class="p">$100 bottle</span></div>
+      </div>
+      <div class="wine-group">
+        <h4>Red</h4>
+        <div class="mi"><div class="info"><h4>Malbec</h4></div><span class="p">$11 / $38</span></div>
+        <div class="mi"><div class="info"><h4>Cabernet Sauvignon</h4></div><span class="p">$11 / $38</span></div>
+        <div class="mi"><div class="info"><h4>Pinot Noir</h4></div><span class="p">$11 / $38</span></div>
+        <div class="mi"><div class="info"><h4>Red Blend</h4></div><span class="p">$11 / $38</span></div>
+      </div>
+      <div class="wine-group">
+        <h4>Port</h4>
+        <div class="mi"><div class="info"><h4>Sandemann 10-year Tawny</h4></div><span class="p">$15 glass</span></div>
+        <div class="mi"><div class="info"><h4>Sandemann 20-year Tawny</h4></div><span class="p">$17 glass</span></div>
+      </div>
+      <p class="menu-note">White, red, and sparkling wines may change due to availability. A variety of bottled beers, ciders, and hard seltzers are also available &mdash; ask your server for today&rsquo;s selections.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. OWNERS ============ -->
+<section class="owners" id="owners">
+  <div class="wrap">
+    <div class="owners-grid">
+      <div>
+        <p class="eyebrow reveal from-l">Owned by Wil &amp; Charlie</p>
+        <h2 class="reveal from-l d1">More than a bar. A home with better lighting.</h2>
+        <p class="reveal from-l d2">With over 20 years in hospitality, Wil Mcerlean, along with his husband Charlie Bonanno, are the visionaries behind Wil&rsquo;s. The goal was to create more than a bar &mdash; to build a timeless space where every drink is a work of art and guests feel at home.</p>
+        <p class="reveal from-l d2">You&rsquo;ll usually find them here: Wil behind the bar, Charlie working the room, both carrying on the Andersonville martini tradition one cold glass at a time.</p>
+        <p class="tagline reveal from-l d3">&ldquo;Classy. Sassy. Definitely bad assy.&rdquo;</p>
+      </div>
+      <div class="owner-photos">
+        <figure data-drift="20"><div class="mask reveal from-r"><img src="Will_Owner_2.jpg" alt="Wil Mcerlean, co-owner of Wil's Martini Lounge" loading="lazy"></div><figcaption style="font-weight:bold">Wil Mcerlean</figcaption></figure>
+        <figure data-drift="-14"><div class="mask reveal from-r d1"><img src="Charlie_Owner.jpg" alt="Charlie Bonanno, co-owner of Wil's Martini Lounge" loading="lazy"></div><figcaption style="font-weight:bold">Charlie Bonanno</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. SOCIAL / GALLERY ============ -->
+<section class="social-sec" id="social">
+  <div class="wrap">
+    <div class="social-head" data-drift="12">
+      <p class="eyebrow reveal">Follow Us</p>
+      <h2 class="reveal d1">Nights at Wil&rsquo;s</h2>
+      <a class="ig reveal d2" href="https://instagram.com/wilsmartinilounge" target="_blank" rel="noopener">@wilsmartinilounge</a>
+    </div>
+    <div class="gallery">
+      <figure class="gcard reveal" data-drift="14"><div class="mask"><img src="Staff_Group_Shot.jpg" alt="The staff of Wil's Martini Lounge" loading="lazy"></div><figcaption>The crew</figcaption></figure>
+      <figure class="gcard reveal d1" data-drift="-10"><div class="mask"><img src="Customers.jpg" alt="Guests enjoying martinis at Wil's" loading="lazy"></div><figcaption>Regulars &amp; friends</figcaption></figure>
+      <figure class="gcard reveal d2" data-drift="10"><div class="mask"><img src="Wil_Owner_AtBar.JPEG" alt="Shaking martinis behind the bar at Wil's" loading="lazy"></div><figcaption>Behind the bar</figcaption></figure>
+      <figure class="gcard reveal" data-drift="-12"><div class="mask"><img src="Staff_Group.jpg" alt="Bartenders at Wil's Martini Lounge" loading="lazy"></div><figcaption>Familiar faces</figcaption></figure>
+      <figure class="gcard reveal d1" data-drift="12"><div class="mask"><img src="Merchandise.jpg" alt="Wil's Martini Lounge merchandise" loading="lazy"></div><figcaption>Take Wil&rsquo;s home</figcaption></figure>
+      <figure class="gcard reveal d2" data-drift="-8"><div class="mask"><img src="whiteandgreen_logo.jpg" alt="Wil's Martini Lounge logo" loading="lazy"></div><figcaption>Wil&rsquo;s</figcaption></figure>
+    </div>
+    <div class="social-cta reveal">
+      <a class="btn" href="https://instagram.com/wilsmartinilounge" target="_blank" rel="noopener">Follow on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. HOURS & LOCATION ============ -->
+<section class="visit" id="visit">
+  <div class="wrap">
+    <div class="visit-grid">
+      <div>
+        <p class="eyebrow reveal">Hours</p>
+        <h2 class="reveal d1">Open late, every night</h2>
+        <table class="hours-table reveal d2">
+          <tr><td>Monday &ndash; Thursday</td><td>4pm &ndash; 1am</td></tr>
+          <tr><td>Friday &amp; Saturday</td><td>3pm &ndash; 2am</td></tr>
+          <tr><td>Sunday</td><td>2pm &ndash; 1am</td></tr>
+        </table>
+        <p class="reserve-note reveal d3">Large party reserves available.</p>
+      </div>
+      <div>
+        <p class="eyebrow reveal">Location</p>
+        <h2 class="reveal d1">Find us in Andersonville</h2>
+        <address class="reveal d2">
+          <strong>Wil&rsquo;s Martini Lounge</strong>
+          1478 W Catalpa Avenue<br>
+          Chicago, IL 60640
+        </address>
+        <div class="contact-lines reveal d2">
+          <a href="tel:+17732472135">773.247.2135</a>
+          <a href="mailto:wilsreservation@gmail.com">wilsreservation@gmail.com</a>
+          <a href="https://instagram.com/wilsmartinilounge" target="_blank" rel="noopener">@wilsmartinilounge</a>
+        </div>
+        <div class="visit-cta reveal d3">
+          <a class="btn btn-solid" style="padding-left:2.2rem;padding-righ:2.2rem;" href="https://maps.google.com/?q=1478+W+Catalpa+Avenue,+Chicago,+IL+60640" target="_blank" rel="noopener">Get Directions</a>
+          <a class="btn" href="mailto:wilsreservation@gmail.com?subject=Reservation%20Request">Reserve a Table</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-video">
+    <video autoplay muted loop playsinline poster="videos/posters/logo2.jpg" aria-label="Wil's Martini Lounge logo animation">
+      <source src="videos/logo2.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="footer-body">
+  <p class="footer-tagline">Classy. Sassy. Definitely bad assy.</p>
+  <nav class="footer-nav" aria-label="Footer">
+    <a href="#lounge">The Lounge</a>
+    <a href="#menu">Menu</a>
+    <a href="#owners">Wil &amp; Charlie</a>
+    <a href="#visit">Hours &amp; Location</a>
+    <a href="https://instagram.com/wilsmartinilounge" target="_blank" rel="noopener">Instagram</a>
+  </nav>
+  <div class="fine">
+    <p>1478 W Catalpa Avenue, Chicago, IL 60640 &nbsp;&middot;&nbsp; 773.247.2135</p>
+    <p>Please drink responsibly. Must be 21. Proper ID required. Bartenders and servers reserve the right to deny service for any reason. Credit or debit card is required to start a tab. Any walkouts on a running tab will be closed out and a 20% gratuity will be added.</p>
+    <p>&copy; <span id="yr"></span> Wil&rsquo;s Martini Lounge</p>
+  </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isMobile = window.matchMedia('(max-width: 760px), (pointer: coarse)').matches;
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* Nav */
+  var nav = document.getElementById('nav');
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 40); }, {passive:true});
+  toggle.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    nav.classList.toggle('menu-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    toggle.setAttribute('aria-expanded', open);
+    toggle.innerHTML = open ? '&times;' : '&#9776;';
+  });
+  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ links.classList.remove('open'); nav.classList.remove('menu-open'); document.body.style.overflow=''; toggle.innerHTML='&#9776;'; toggle.setAttribute('aria-expanded','false'); }); });
+
+  /* Scroll reveals */
+  if (!reduced && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    }, {threshold:.16, rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* Parallax: video backgrounds + gallery drift (desktop only) */
+  if (!reduced && !isMobile){
+    var pEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
+    var dEls = [].slice.call(document.querySelectorAll('[data-drift]'));
+    var ticking = false;
+    function onScroll(){
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(function(){
+        var vh = window.innerHeight;
+        pEls.forEach(function(el){
+          var r = el.parentElement.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > vh) { ticking=false; return; }
+          var speed = parseFloat(el.getAttribute('data-parallax'));
+          var off = (r.top + r.height/2 - vh/2) * speed;
+          var lim = r.height * 0.055; /* keep within the 1.12 scale headroom */
+          off = Math.max(-lim, Math.min(lim, off));
+          var v = el.querySelector('video, img.vfallback');
+          if (v){ v.style.transform = 'translateY(' + off.toFixed(1) + 'px) scale(1.12)'; }
+        });
+        dEls.forEach(function(el){
+          var r = el.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > vh) return;
+          var amt = parseFloat(el.getAttribute('data-drift'));
+          var prog = (r.top + r.height/2 - vh/2) / vh;
+          el.style.transform = 'translateY(' + (prog * amt * 2).toFixed(1) + 'px)';
+        });
+        ticking = false;
+      });
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  }
+
+  /* Video graceful degradation */
+  document.querySelectorAll('.video-bg video, .footer-video video').forEach(function(v){
+    v.addEventListener('error', function(){
+      var fb = v.parentElement.querySelector('img.vfallback');
+      if (fb){ fb.style.display='block'; v.style.display='none'; }
+      else { v.style.display='none'; }
+    }, true);
+    var p = v.play(); if (p && p.catch) p.catch(function(){ /* poster shows */ });
+  });
+
+  /* Keep videos playing: retry any that stall or get paused by the browser */
+  function nudgeVideos(){
+    document.querySelectorAll('.video-bg video, .footer-video video').forEach(function(v){
+      if (v.paused && !v.ended){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+    });
+  }
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden) nudgeVideos(); });
+  window.addEventListener('scroll', (function(){ var t; return function(){ clearTimeout(t); t = setTimeout(nudgeVideos, 400); }; })(), {passive:true});
+  nudgeVideos();
+
+  /* Reviews marquee: duplicate the track once for a seamless loop (desktop only) */
+  var track = document.getElementById('reviewsTrack');
+  if (track && !reduced && window.matchMedia('(min-width: 761px)').matches){
+    var originals = track.children.length;
+    track.innerHTML += track.innerHTML;
+    [].slice.call(track.children).slice(originals).forEach(function(c){ c.setAttribute('aria-hidden','true'); });
+  }
+
+  /* Menu filtering with load/unload animation */
+  var tabs = document.querySelectorAll('.menu-tabs button');
+  var cats = [].slice.call(document.querySelectorAll('.menu-cat'));
+  var switching = false;
+  function currentCat(){ return cats.find(function(c){ return !c.classList.contains('hidden'); }); }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      if (switching || t.classList.contains('active')) return;
+      switching = true;
+      tabs.forEach(function(b){ b.classList.remove('active'); });
+      t.classList.add('active');
+      t.scrollIntoView({behavior: reduced ? 'auto' : 'smooth', block:'nearest', inline:'center'});
+      var target = cats.find(function(c){ return c.getAttribute('data-cat') === t.getAttribute('data-cat'); });
+      var cur = currentCat();
+      function show(){
+        target.classList.add('anim-in');
+        target.classList.remove('hidden');
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){
+          target.classList.remove('anim-in');
+          switching = false;
+        }); });
+      }
+      if (reduced || !cur){ if(cur){cur.classList.add('hidden');} show(); return; }
+      cur.classList.add('anim-out');
+      setTimeout(function(){
+        cur.classList.remove('anim-out');
+        cur.classList.add('hidden');
+        show();
+      }, 380);
+    });
+  });
+
+  /* Tab overflow arrows */
+  var tabsEl = document.getElementById('menuTabs');
+  var tabsWrap = tabsEl.parentElement;
+  function checkOverflow(){ tabsWrap.classList.toggle('overflowing', tabsEl.scrollWidth > tabsEl.clientWidth + 4); }
+  checkOverflow();
+  window.addEventListener('resize', checkOverflow, {passive:true});
+  document.getElementById('tabPrev').addEventListener('click', function(){ tabsEl.scrollBy({left:-220, behavior:'smooth'}); });
+  document.getElementById('tabNext').addEventListener('click', function(){ tabsEl.scrollBy({left:220, behavior:'smooth'}); });
+
+  /* Scrollspy: highlight section currently in view in the nav */
+  var spyMap = {};
+  links.querySelectorAll('a[href^="#"]').forEach(function(a){ spyMap[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          Object.keys(spyMap).forEach(function(k){ spyMap[k].classList.remove('active'); });
+          var a = spyMap[e.target.id];
+          if (a) a.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-38% 0px -52% 0px'});
+    Object.keys(spyMap).forEach(function(id){
+      var sec = document.getElementById(id);
+      if (sec) spy.observe(sec);
+    });
+  }
+})();
+</script>
+</body>
+</html>
