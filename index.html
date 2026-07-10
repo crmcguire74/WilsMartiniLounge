@@ -160,10 +160,15 @@ section{position:relative}
 .owners p{color:var(--cream);font-size:1.08rem;margin-bottom:18px;max-width:56ch}
 .owners .tagline{font-family:var(--serif);font-style:italic;color:var(--amber);font-size:1.3rem;margin-top:26px}
 .owner-photos{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.owner-photos figure:nth-child(1){transform:translateY(26px)}
+.owner-photos figure:nth-child(1){margin-top:26px}
 .owner-photos figure{margin:0}
 .owner-photos img{width:100%;aspect-ratio:3/4;object-fit:cover}
 .owner-photos figcaption{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--brass);margin-top:12px;text-align:center}
+.owner-photos .duo{grid-column:1/-1;margin-top:8px}
+.owner-photos .duo img{aspect-ratio:4/3;object-position:50% 45%}
+.owner-photos .duo .mask{position:relative}
+.owner-photos .duo .mask::after{content:'';position:absolute;inset:12px;border:1px solid rgba(232,163,76,.45);pointer-events:none}
+.owner-photos .duo figcaption{font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:.04em;font-size:1.05rem;color:var(--amber)}
 
 /* ---------- Gallery / social ---------- */
 .social-sec{padding:130px 0;background:var(--black)}
@@ -172,10 +177,13 @@ section{position:relative}
 .social-head a.ig{display:inline-block;margin-top:16px;font-size:14px;letter-spacing:.2em;text-transform:uppercase}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .gcard{position:relative}
+.gcard figure{margin:0}
 .gcard img{width:100%;aspect-ratio:4/5;object-fit:cover}
-.gcard:nth-child(2){transform:translateY(46px)}
-.gcard:nth-child(3){transform:translateY(14px)}
-.gcard:nth-child(5){transform:translateY(46px)}
+.gcard img.storefront{object-position:55% 50%}
+.gcard:nth-child(2){margin-top:46px}
+.gcard:nth-child(3){margin-top:14px}
+.gcard:nth-child(5){margin-top:46px}
+[data-drift]{will-change:transform}
 .gcard figcaption{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--brass);margin-top:12px}
 .social-cta{text-align:center;margin-top:110px}
 
@@ -210,8 +218,8 @@ section{position:relative}
 @media (max-width:920px){
   .owners-grid,.visit-grid{grid-template-columns:1fr;gap:50px}
   .gallery{grid-template-columns:repeat(2,1fr)}
-  .gcard:nth-child(n){transform:none}
-  .gcard:nth-child(even){transform:translateY(30px)}
+  .gcard:nth-child(n){margin-top:0}
+  .gcard:nth-child(even){margin-top:30px}
 }
 @media (max-width:760px){
   .nav-links{position:fixed;top:0;left:0;width:100vw;height:100dvh;background:#070908;flex-direction:column;justify-content:flex-start;gap:30px;display:none;overflow-y:auto;padding:84px 24px 40px;margin:0;z-index:105}
@@ -222,8 +230,10 @@ section{position:relative}
   .nav-toggle{display:block;z-index:110;position:relative}
   .menu-tabs-wrap{top:56px}
   .gallery{grid-template-columns:1fr}
-  .gcard:nth-child(n){transform:none}
-  .owner-photos figure:nth-child(1){transform:none}
+  .gcard:nth-child(n){margin-top:0}
+  .owner-photos figure:nth-child(1){margin-top:0}
+  .owner-photos .duo{margin-top:8px}
+  .reviews-track .review.dup{display:none}
   .lounge{min-height:88svh}
 }
 @media (prefers-reduced-motion:reduce){
@@ -246,7 +256,7 @@ section{position:relative}
     <li><a href="#menu">Menu</a></li>
     <li><a href="#owners">Wil &amp; Charlie</a></li>
     <li><a href="#visit">Hours &amp; Location</a></li>
-    <li><a class="btn btn-solid" href="mailto:wilsreservation@gmail.com?subject=Reservation%20Request">Reserve</a></li>
+    <li><a class="btn btn-solid" href="mailto:cjbona1474@gmail.com?subject=Reservation%20Request">Reserve</a></li>
   </ul>
 </header>
 
@@ -455,6 +465,7 @@ section{position:relative}
       <div class="owner-photos">
         <figure data-drift="20"><div class="mask reveal from-r"><img src="Will_Owner_2.jpg" alt="Wil Mcerlean, co-owner of Wil's Martini Lounge" loading="lazy"></div><figcaption style="font-weight:bold">Wil Mcerlean</figcaption></figure>
         <figure data-drift="-14"><div class="mask reveal from-r d1"><img src="Charlie_Owner.jpg" alt="Charlie Bonanno, co-owner of Wil's Martini Lounge" loading="lazy"></div><figcaption style="font-weight:bold">Charlie Bonanno</figcaption></figure>
+        <figure class="duo" data-drift="-8"><div class="mask reveal from-r d2"><img src="WilAndCharlie.jpeg" alt="Wil and Charlie embracing at the lounge" loading="lazy"></div><figcaption class="reveal d3">The heart of the house</figcaption></figure>
       </div>
     </div>
   </div>
@@ -469,12 +480,12 @@ section{position:relative}
       <a class="ig reveal d2" href="https://instagram.com/wilsmartinilounge" target="_blank" rel="noopener">@wilsmartinilounge</a>
     </div>
     <div class="gallery">
-      <figure class="gcard reveal" data-drift="14"><div class="mask"><img src="Staff_Group_Shot.jpg" alt="The staff of Wil's Martini Lounge" loading="lazy"></div><figcaption>The crew</figcaption></figure>
-      <figure class="gcard reveal d1" data-drift="-10"><div class="mask"><img src="Customers.jpg" alt="Guests enjoying martinis at Wil's" loading="lazy"></div><figcaption>Regulars &amp; friends</figcaption></figure>
-      <figure class="gcard reveal d2" data-drift="10"><div class="mask"><img src="Wil_Owner_AtBar.JPEG" alt="Shaking martinis behind the bar at Wil's" loading="lazy"></div><figcaption>Behind the bar</figcaption></figure>
-      <figure class="gcard reveal" data-drift="-12"><div class="mask"><img src="Staff_Group.jpg" alt="Bartenders at Wil's Martini Lounge" loading="lazy"></div><figcaption>Familiar faces</figcaption></figure>
-      <figure class="gcard reveal d1" data-drift="12"><div class="mask"><img src="Merchandise.jpg" alt="Wil's Martini Lounge merchandise" loading="lazy"></div><figcaption>Take Wil&rsquo;s home</figcaption></figure>
-      <figure class="gcard reveal d2" data-drift="-8"><div class="mask"><img src="whiteandgreen_logo.jpg" alt="Wil's Martini Lounge logo" loading="lazy"></div><figcaption>Wil&rsquo;s</figcaption></figure>
+      <div class="gcard" data-drift="14"><figure class="reveal"><div class="mask"><img src="Staff_Group_Shot.jpg" alt="The staff of Wil's Martini Lounge" loading="lazy"></div><figcaption>The crew</figcaption></figure></div>
+      <div class="gcard" data-drift="-10"><figure class="reveal d1"><div class="mask"><img src="Customers.jpg" alt="Guests enjoying martinis at Wil's" loading="lazy"></div><figcaption>Regulars &amp; friends</figcaption></figure></div>
+      <div class="gcard" data-drift="10"><figure class="reveal d2"><div class="mask"><img src="Wil_Owner_AtBar.JPEG" alt="Shaking martinis behind the bar at Wil's" loading="lazy"></div><figcaption>Behind the bar</figcaption></figure></div>
+      <div class="gcard" data-drift="-12"><figure class="reveal"><div class="mask"><img src="Staff_Group.jpg" alt="Bartenders at Wil's Martini Lounge" loading="lazy"></div><figcaption>Familiar faces</figcaption></figure></div>
+      <div class="gcard" data-drift="12"><figure class="reveal d1"><div class="mask"><img src="artPiece.webp" alt="Framed painting of a tuxedoed figure holding a martini inside Wil's" loading="lazy"></div><figcaption>The house muse</figcaption></figure></div>
+      <div class="gcard" data-drift="-8"><figure class="reveal d2"><div class="mask"><img class="storefront" src="frontView.png" alt="The front of Wil's Martini Lounge on Catalpa Avenue at night" loading="lazy"></div><figcaption>See you on Catalpa</figcaption></figure></div>
     </div>
     <div class="social-cta reveal">
       <a class="btn" href="https://instagram.com/wilsmartinilounge" target="_blank" rel="noopener">Follow on Instagram</a>
@@ -511,7 +522,7 @@ section{position:relative}
         </div>
         <div class="visit-cta reveal d3">
           <a class="btn btn-solid" style="padding-left:2.2rem;padding-righ:2.2rem;" href="https://maps.google.com/?q=1478+W+Catalpa+Avenue,+Chicago,+IL+60640" target="_blank" rel="noopener">Get Directions</a>
-          <a class="btn" href="mailto:wilsreservation@gmail.com?subject=Reservation%20Request">Reserve a Table</a>
+          <a class="btn" href="mailto:cjbona1474@gmail.com?subject=Reservation%20Request">Reserve a Table</a>
         </div>
       </div>
     </div>
@@ -573,10 +584,9 @@ section{position:relative}
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
   }
 
-  /* Parallax: video backgrounds + gallery drift (desktop only) */
+  /* Parallax: video backgrounds (desktop only) */
   if (!reduced && !isMobile){
     var pEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
-    var dEls = [].slice.call(document.querySelectorAll('[data-drift]'));
     var ticking = false;
     function onScroll(){
       if (ticking) return; ticking = true;
@@ -592,18 +602,44 @@ section{position:relative}
           var v = el.querySelector('video, img.vfallback');
           if (v){ v.style.transform = 'translateY(' + off.toFixed(1) + 'px) scale(1.12)'; }
         });
-        dEls.forEach(function(el){
-          var r = el.getBoundingClientRect();
-          if (r.bottom < 0 || r.top > vh) return;
-          var amt = parseFloat(el.getAttribute('data-drift'));
-          var prog = (r.top + r.height/2 - vh/2) / vh;
-          el.style.transform = 'translateY(' + (prog * amt * 2).toFixed(1) + 'px)';
-        });
         ticking = false;
       });
     }
     window.addEventListener('scroll', onScroll, {passive:true});
     onScroll();
+  }
+
+  /* Gallery drift: lerped toward the scroll target so motion stays smooth (desktop only) */
+  if (!reduced && !isMobile){
+    var dEls = [].slice.call(document.querySelectorAll('[data-drift]')).map(function(el){
+      return { el: el, amt: parseFloat(el.getAttribute('data-drift')), cur: 0 };
+    });
+    var driftRunning = false;
+    function driftFrame(){
+      var vh = window.innerHeight;
+      var active = false;
+      dEls.forEach(function(d){
+        var r = d.el.getBoundingClientRect();
+        var tgt = d.cur;
+        if (r.bottom > -100 && r.top < vh + 100){
+          var prog = (r.top + r.height/2 - vh/2) / vh;
+          tgt = prog * d.amt * 2;
+        }
+        var next = d.cur + (tgt - d.cur) * 0.12;
+        if (Math.abs(tgt - next) > 0.1) active = true;
+        if (Math.abs(next - d.cur) > 0.01){
+          d.cur = next;
+          d.el.style.transform = 'translate3d(0,' + next.toFixed(2) + 'px,0)';
+        }
+      });
+      if (active){ requestAnimationFrame(driftFrame); } else { driftRunning = false; }
+    }
+    function wakeDrift(){
+      if (!driftRunning){ driftRunning = true; requestAnimationFrame(driftFrame); }
+    }
+    window.addEventListener('scroll', wakeDrift, {passive:true});
+    window.addEventListener('resize', wakeDrift, {passive:true});
+    wakeDrift();
   }
 
   /* Video graceful degradation */
@@ -626,12 +662,16 @@ section{position:relative}
   window.addEventListener('scroll', (function(){ var t; return function(){ clearTimeout(t); t = setTimeout(nudgeVideos, 400); }; })(), {passive:true});
   nudgeVideos();
 
-  /* Reviews marquee: duplicate the track once for a seamless loop (desktop only) */
+  /* Reviews marquee: duplicate the track once for a seamless loop.
+     Clones are tagged .dup and hidden by CSS on mobile, where the marquee doesn't run. */
   var track = document.getElementById('reviewsTrack');
-  if (track && !reduced && window.matchMedia('(min-width: 761px)').matches){
+  if (track && !reduced){
     var originals = track.children.length;
     track.innerHTML += track.innerHTML;
-    [].slice.call(track.children).slice(originals).forEach(function(c){ c.setAttribute('aria-hidden','true'); });
+    [].slice.call(track.children).slice(originals).forEach(function(c){
+      c.setAttribute('aria-hidden','true');
+      c.classList.add('dup');
+    });
   }
 
   /* Menu filtering with load/unload animation */
