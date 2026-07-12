@@ -3,8 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wil's Martini Lounge — Andersonville, Chicago</title>
-<meta name="description" content="Wil's Martini Lounge. Classic cocktails, abstract nights, north side energy. 1478 W Catalpa Ave, Chicago. Best martinis in Andersonville.">
+<title>Wil&rsquo;s Martini Lounge | Martini Bar in Andersonville, Chicago</title>
+<meta name="description" content="Wil's Martini Lounge is an intimate martini bar in Andersonville, Chicago. Classic and signature martinis, mocktails, sweetinis, and wine at 1478 W Catalpa Ave. Open late every night.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#070908">
+<link rel="canonical" href="https://wilsmartinilounge.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wil's Martini Lounge">
+<meta property="og:title" content="Wil's Martini Lounge | Martini Bar in Andersonville, Chicago">
+<meta property="og:description" content="An intimate martini bar in Andersonville. Classic and signature martinis, mocktails, and wine at 1478 W Catalpa Ave, Chicago. Open late every night.">
+<meta property="og:url" content="https://wilsmartinilounge.com/">
+<meta property="og:image" content="https://wilsmartinilounge.com/img/lounge/wils1.jpg">
+<meta property="og:image:alt" content="The bar at Wil's Martini Lounge with blue leather stools under a copper tin ceiling">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Wil's Martini Lounge | Martini Bar in Andersonville, Chicago">
+<meta name="twitter:description" content="An intimate martini bar in Andersonville. Classic and signature martinis, mocktails, and wine. Open late every night.">
+<meta name="twitter:image" content="https://wilsmartinilounge.com/img/lounge/wils1.jpg">
+<meta name="geo.region" content="US-IL">
+<meta name="geo.placename" content="Chicago">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -55,6 +72,26 @@ section{position:relative}
 .btn-solid:hover,.btn-solid:focus-visible{background:var(--white);border-color:var(--white)}
 .nav .btn{padding:10px 22px;font-size:12px}
 .nav-toggle{display:none;background:none;border:none;color:var(--cream);font-size:26px;cursor:pointer;line-height:1}
+/* Reserve button: responsive label (long → medium → short as the nav tightens) */
+.btn-reserve{white-space:nowrap}
+.btn-reserve .rsv-m,.btn-reserve .rsv-s{display:none}
+@media (max-width:1279px){
+  .btn-reserve .rsv-l{display:none}
+  .btn-reserve .rsv-m{display:inline}
+}
+@media (max-width:1099px){
+  .btn-reserve .rsv-m{display:none}
+  .btn-reserve .rsv-s{display:inline}
+}
+@media (max-width:760px){
+  /* Hamburger menu: room for the full label on all but the narrowest phones */
+  .btn-reserve .rsv-l{display:inline}
+  .btn-reserve .rsv-m,.btn-reserve .rsv-s{display:none}
+}
+@media (max-width:374px){
+  .btn-reserve .rsv-l{display:none}
+  .btn-reserve .rsv-m{display:inline}
+}
 
 /* ---------- Video sections ---------- */
 .video-bg{position:absolute;inset:0;overflow:hidden}
@@ -107,6 +144,40 @@ section{position:relative}
   .reviews-track{animation:none}
 }
 
+/* ---------- Press (The Buzz) ---------- */
+.press{position:relative;z-index:2;margin-top:74px}
+.press-lede{max-width:820px;margin-bottom:48px}
+.press-lede blockquote{margin:0}
+.press-lede blockquote p{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,3.4vw,2.6rem);color:var(--white);line-height:1.3;text-shadow:0 2px 20px rgba(0,0,0,.65)}
+.press-lede cite{display:block;font-style:normal;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--brass);margin-top:18px}
+.press-lede cite a{color:var(--amber)}
+.press-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.press-card{display:flex;flex-direction:column;gap:14px;background:rgba(7,9,8,.66);backdrop-filter:blur(8px);border:1px solid rgba(185,138,68,.3);border-top:2px solid var(--brass);padding:28px 26px;color:var(--cream);transition:transform .5s cubic-bezier(.22,.61,.36,1),border-color .4s,background .4s}
+.press-card:hover,.press-card:focus-visible{transform:translateY(-6px);border-color:var(--amber);background:rgba(7,9,8,.85)}
+.press-card .pub{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--brass)}
+.press-card p{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--cream);flex:1}
+.press-card .go{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber)}
+.reviews-label{text-align:center;margin-top:74px}
+
+/* ---------- Step Inside (interior strip) ---------- */
+.roomstrip{background:linear-gradient(180deg,var(--black),var(--emerald-deep) 55%,var(--black));padding:120px 0 130px;overflow:hidden}
+.roomstrip-head{text-align:center;margin-bottom:60px}
+.roomstrip-head h2{font-size:clamp(2rem,4.2vw,3.2rem)}
+.roomstrip-head p{color:var(--muted);margin-top:14px;font-family:var(--serif);font-style:italic}
+.roomstrip-rail{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 6%,#000 94%,transparent 100%)}
+.roomstrip-track{display:flex;width:max-content;will-change:transform}
+.roomstrip-track figure{margin:0 18px 0 0;overflow:hidden;flex:0 0 auto}
+.roomstrip-track img{height:min(380px,46vh);width:auto;display:block;filter:brightness(.94) saturate(.98);transition:filter .5s,transform .9s cubic-bezier(.22,.61,.36,1)}
+.roomstrip-track figure:hover img{filter:brightness(1.06) saturate(1.05);transform:scale(1.045)}
+@media (max-width:760px){
+  .roomstrip{padding:90px 0}
+  .roomstrip-track img{height:240px}
+  .roomstrip-track figure{margin-right:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .roomstrip-rail{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+}
+
 /* ---------- Featured ---------- */
 .featured{background:linear-gradient(180deg,var(--black),var(--emerald-deep) 55%,var(--black));padding:130px 0}
 .featured-head{text-align:center;max-width:680px;margin:0 auto 70px}
@@ -142,6 +213,8 @@ section{position:relative}
 .menu-cat.hidden{display:none;}
 .menu-cat.anim-out{opacity:0;transform:translateY(28px) scale(.99)}
 .menu-cat.anim-in{opacity:0;transform:translateY(28px)}
+.menu-cat .cards{grid-template-columns:repeat(2,1fr)} /* featured tab: balanced 2x2 */
+@media (max-width:560px){.menu-cat .cards{grid-template-columns:1fr}}
 .menu-cat h3{font-size:clamp(1.6rem,3vw,2.2rem);text-align:center;margin-bottom:6px}
 .menu-cat .cat-sub{text-align:center;font-family:var(--serif);font-style:italic;color:var(--brass);margin-bottom:44px;font-size:1.05rem;}
 .mi{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:18px 0;border-bottom:1px solid rgba(185,138,68,.18);margin-left:10px;margin-right:10px;}
@@ -154,7 +227,9 @@ section{position:relative}
 .wine-group h4{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);font-family:var(--sans);font-weight:500;margin-bottom:14px;text-align:center}
 
 /* ---------- Owners ---------- */
-.owners{background:linear-gradient(180deg,var(--black) 0%,#0B342C 28%,#0B342C 72%,var(--black) 100%);padding:160px 0 140px}
+/* overflow-x:clip contains the from-l/from-r pre-reveal offsets without
+   creating a scroll container, so it can't break the sticky menu tabs */
+.owners{background:linear-gradient(180deg,var(--black) 0%,#0B342C 28%,#0B342C 72%,var(--black) 100%);padding:160px 0 140px;overflow-x:clip}
 .owners-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
 .owners h2{font-size:clamp(2rem,4.2vw,3.2rem);margin-bottom:24px}
 .owners p{color:var(--cream);font-size:1.08rem;margin-bottom:18px;max-width:56ch}
@@ -231,6 +306,10 @@ section{position:relative}
   .gcard:nth-child(n){margin-top:0}
   .reviews-track .review.dup{display:none}
   .lounge{min-height:88svh}
+  /* keep pre-reveal offsets inside the viewport so mobile Safari never
+     sees content wider than the screen (black-strip zoom bug) */
+  .reveal.from-l{transform:translateX(-28px)}
+  .reveal.from-r{transform:translateX(28px)}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -239,20 +318,61 @@ section{position:relative}
   .scroll-cue span{animation:none}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BarOrPub",
+  "name": "Wil's Martini Lounge",
+  "description": "Intimate martini bar in Andersonville, Chicago serving classic and signature martinis, mocktails, sweetinis, and wine.",
+  "url": "https://wilsmartinilounge.com/",
+  "image": "https://wilsmartinilounge.com/img/lounge/wils1.jpg",
+  "logo": "https://wilsmartinilounge.com/img/logo_white.svg",
+  "telephone": "+1-773-747-2135",
+  "email": "wilsmartiniloung@gmail.com",
+  "priceRange": "$$",
+  "servesCuisine": "Cocktails",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1478 W Catalpa Avenue",
+    "addressLocality": "Chicago",
+    "addressRegion": "IL",
+    "postalCode": "60640",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 41.9818467,
+    "longitude": -87.6679687
+  },
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"], "opens": "16:00", "closes": "01:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "15:00", "closes": "02:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "14:00", "closes": "01:00"}
+  ],
+  "sameAs": [
+    "https://instagram.com/wilsmartinilounge",
+    "https://chicago.gaycities.com/bars/312511-wils-martini-lounge"
+  ],
+  "founder": [
+    {"@type": "Person", "name": "Wil Mcerlean"},
+    {"@type": "Person", "name": "Charlie Bonanno"}
+  ]
+}
+</script>
 </head>
 <body style="overflow-x:hidden;">
 
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
-  <a class="nav-logo" href="#top" aria-label="Wil's Martini Lounge home"><img src="logo_white.svg" alt="Wil's Martini Lounge"></a>
+  <a class="nav-logo" href="#top" aria-label="Wil's Martini Lounge home"><img src="img/logo_white.svg" alt="Wil's Martini Lounge"></a>
   <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#lounge">The Lounge</a></li>
-    <li><a href="#featured">Featured</a></li>
+    <li><a href="#lounge">The Buzz</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#owners">Wil &amp; Charlie</a></li>
+    <li id="navHappenings"><a href="#happenings">Happenings</a></li>
     <li><a href="#visit">Hours &amp; Location</a></li>
-    <li><a class="btn btn-solid" href="mailto:cjbona1474@gmail.com?subject=Reservation%20Request">Reserve</a></li>
+    <li><a class="btn btn-solid btn-reserve" href="moon-lounge.html"><span class="rsv-l">Private Room Reservations</span><span class="rsv-m">Reservations</span><span class="rsv-s">Reserve</span></a></li>
   </ul>
 </header>
 
@@ -266,7 +386,7 @@ section{position:relative}
     <div class="scrim"></div>
   </div>
   <div class="hero-inner">
-    <img class="hero-logo reveal in" src="logo_white.svg" alt="Wil's Martini Lounge logo">
+    <img class="hero-logo reveal in" src="img/logo_white.svg" alt="Wil's Martini Lounge logo">
     <h1>Wil&rsquo;s Martini Lounge</h1>
     <p class="sub">Classic cocktails. Abstract nights. North side energy.</p>
     <div class="hero-cta">
@@ -287,13 +407,45 @@ section{position:relative}
   </div>
   <div class="wrap">
     <div class="lounge-inner">
-      <p class="eyebrow reveal">The Lounge</p>
+      <p class="eyebrow reveal">The Buzz</p>
       <h2 class="reveal d1">A timeless room behind the wavy wall</h2>
       <p class="reveal d2">Tucked on a quiet corner of Catalpa Avenue in Andersonville, Wil&rsquo;s is a small, dark, art-forward room built for slow nights and cold martinis. Copper light, tufted leather, a pressed-tin ceiling, and the abstract mural that gives the whole place its pulse. Come as a regular, leave as family.</p>
     </div>
+    <div class="press">
+      <div class="press-lede reveal">
+        <blockquote>
+          <p>&ldquo;This bar is for everyone.&rdquo;</p>
+          <cite style="font-weight:800;">&mdash; Wil, as quoted in <a href="https://blockclubchicago.org/2025/10/09/wils-martini-lounge-opens-in-andersonville-this-bar-is-for-everyone/" target="_blank" rel="noopener">Block Club Chicago</a></cite>
+        </blockquote>
+      </div>
+      <div class="press-grid">
+        <a class="press-card reveal" href="https://blockclubchicago.org/2025/10/09/wils-martini-lounge-opens-in-andersonville-this-bar-is-for-everyone/" target="_blank" rel="noopener">
+          <span class="pub">Block Club Chicago</span>
+          <p>&ldquo;A glowing reception from the neighborhood, with lines out the door since opening night.&rdquo;</p>
+          <span class="go">Read the story &rarr;</span>
+        </a>
+        <a class="press-card reveal d1" href="https://wgntv.com/spotlight-chicago/wils-martini-lounge-in-andersonville/" target="_blank" rel="noopener">
+          <span class="pub">WGN-TV &middot; Spotlight Chicago</span>
+          <p>WGN brought its cameras up to Catalpa Avenue for a look inside Andersonville&rsquo;s newest martini lounge.</p>
+          <span class="go">Watch the segment &rarr;</span>
+        </a>
+        <a class="press-card reveal d2" href="https://moviesmealsandmixology.com/f/wils-martini-lounge-is-exquisite" target="_blank" rel="noopener">
+          <span class="pub">Movies, Meals &amp; Mixology</span>
+          <p>&ldquo;Wil&rsquo;s Martini Lounge is exquisite!&rdquo;</p>
+          <span class="go">Read the review &rarr;</span>
+        </a>
+        <a class="press-card reveal d3" href="https://chicago.gaycities.com/bars/312511-wils-martini-lounge" target="_blank" rel="noopener">
+          <span class="pub">GayCities Chicago</span>
+          <p>&ldquo;If you&rsquo;re on the hunt for the perfect martini paired with friendly faces&hellip; look no further!&rdquo;</p>
+          <span class="go">See the listing &rarr;</span>
+        </a>
+      </div>
+    </div>
+    <p class="eyebrow reviews-label reveal">Word From The Regulars</p>
     <div class="reviews reveal">
       <div class="reviews-track" id="reviewsTrack">
         <blockquote class="review"><p>&ldquo;Welcome Wil&rsquo;s. Great addition to the neighborhood. Beautiful space and great to see so many familiar faces.&rdquo;</p><cite>&mdash; Steven P.</cite></blockquote>
+        <blockquote class="review"><p>&ldquo;You can see the love that the owners put into creating this swanky new bar in Andersonville&hellip; a great spot to have a martini, or two.&rdquo;</p><cite>&mdash; sportrob, GayCities</cite></blockquote>
         <blockquote class="review"><p>&ldquo;Absolutely fell in love with this place and the staff! Thanks for carrying on the Andersonville martini tradition. Best martinis in Chicago!&rdquo;</p><cite>&mdash; Khenemet</cite></blockquote>
         <blockquote class="review"><p>&ldquo;Been waiting for this to open and it&rsquo;s been worth the wait. So happy for Wil &amp; Charlie.&rdquo;</p><cite>&mdash; Neighborhood guest</cite></blockquote>
         <blockquote class="review"><p>&ldquo;The new space is beautiful! Love all the familiar faces of the bartenders and the drinks are on point!&rdquo;</p><cite>&mdash; Neighborhood guest</cite></blockquote>
@@ -302,24 +454,32 @@ section{position:relative}
   </div>
 </section>
 
-<!-- ============ 3. FEATURED MARTINIS ============ -->
-<section class="featured" id="featured">
-  <div class="wrap">
-    <div class="featured-head">
-      <p class="eyebrow reveal">Featured Martinis</p>
-      <h2 class="reveal d1">Poured cold. Built to linger.</h2>
-      <p class="reveal d2">Every drink comes in two pours &mdash; a full 10&nbsp;oz or an easy 6&nbsp;oz.</p>
-    </div>
-    <div class="cards">
-      <article class="card reveal"><span class="tag">Signature</span><h3>Charlie&rsquo;s Cosmo</h3><p>Botanical grapefruit and rose vodka, triple sec, cranberry juice, and lime juice, with a lemon twist.</p><span class="price">$18 / $13</span></article>
-      <article class="card reveal d1"><span class="tag">Classic</span><h3>Espresso Martini</h3><p>Vanilla vodka and coffee liqueur, with a coffee bean garnish.</p><span class="price">$17 / $12</span></article>
-      <article class="card reveal d2"><span class="tag">Classic</span><h3>Dirty Martini</h3><p>Vodka and olive juice, with blue cheese&ndash;stuffed olives.</p><span class="price">$16 / $11</span></article>
-      <article class="card reveal d3"><span class="tag">Fall Feature</span><h3>The Veteran</h3><p>Whiskey, honey, sour mix, and cardamom bitters, with an orange garnish.</p><span class="price">$18 / $13</span></article>
+<!-- ============ 2b. STEP INSIDE (interior strip) ============ -->
+<section class="roomstrip" id="room" aria-label="Inside Wil's Martini Lounge">
+  <div class="roomstrip-head wrap">
+    <p class="eyebrow reveal">Step Inside</p>
+    <h2 class="reveal d1">The room does the talking</h2>
+    <p class="reveal d2">Copper ceilings, navy walls, and a seat waiting for you.</p>
+  </div>
+  <div class="roomstrip-rail reveal">
+    <div class="roomstrip-track" id="roomTrack">
+      <figure><img src="img/lounge/wils1.jpg" alt="The full bar at Wil's with blue leather stools under a copper tin ceiling" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils6.jpg" alt="Backlit glassware shelves and pendant globes behind the bar" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils2.jpg" alt="Lounge seating with warm table lamps at Wil's" loading="lazy"></figure>
+      <figure><img src="img/lounge/Wils3.jpg" alt="Interior detail at Wil's Martini Lounge" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils5.jpg" alt="The bar and seating area at Wil's" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils12.jpg" alt="Interior detail at Wil's Martini Lounge" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils10.jpg" alt="The lounge floor at Wil's Martini Lounge" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils13.jpg" alt="Interior detail at Wil's Martini Lounge" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils11.jpg" alt="Seating and lighting inside Wil's" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils9.jpg" alt="Interior detail at Wil's Martini Lounge" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils7.jpg" alt="The bar at Wil's Martini Lounge" loading="lazy"></figure>
+      <figure><img src="img/lounge/Wils4.jpg" alt="Interior of Wil's Martini Lounge" loading="lazy"></figure>
     </div>
   </div>
 </section>
 
-<!-- ============ 4. FULL MENU ============ -->
+<!-- ============ 3. FULL MENU ============ -->
 <section class="menu-sec" id="menu">
   <div class="video-bg" data-parallax="0.2">
     <video autoplay muted loop playsinline poster="videos/posters/martini.jpg" aria-hidden="true">
@@ -337,7 +497,8 @@ section{position:relative}
     <div class="menu-tabs-wrap">
       <button class="tab-arrow" id="tabPrev" aria-label="Scroll categories left">&#8249;</button>
       <nav class="menu-tabs" id="menuTabs" aria-label="Menu categories">
-        <button class="active" data-cat="classics">The Classics</button>
+        <button class="active" data-cat="featured">Featured</button>
+        <button data-cat="classics">The Classics</button>
         <button data-cat="signature">Signature Martinis</button>
         <button data-cat="mocktails">Mocktails</button>
         <button data-cat="sweetinis">Sweetinis</button>
@@ -346,7 +507,18 @@ section{position:relative}
       <button class="tab-arrow" id="tabNext" aria-label="Scroll categories right">&#8250;</button>
     </div>
 
-    <div class="menu-cat" data-cat="classics" id="classics">
+    <div class="menu-cat" data-cat="featured" id="featured">
+      <h3>Featured Martinis</h3>
+      <p class="cat-sub">Poured cold. Built to linger.</p>
+      <div class="cards">
+        <article class="card reveal"><span class="tag">Signature</span><h3>Charlie&rsquo;s Cosmo</h3><p>Botanical grapefruit and rose vodka, triple sec, cranberry juice, and lime juice, with a lemon twist.</p><span class="price">$18 / $13</span></article>
+        <article class="card reveal d1"><span class="tag">Classic</span><h3>Espresso Martini</h3><p>Vanilla vodka and coffee liqueur, with a coffee bean garnish.</p><span class="price">$17 / $12</span></article>
+        <article class="card reveal d2"><span class="tag">Classic</span><h3>Dirty Martini</h3><p>Vodka and olive juice, with blue cheese&ndash;stuffed olives.</p><span class="price">$16 / $11</span></article>
+        <article class="card reveal d3"><span class="tag">Fall Feature</span><h3>The Veteran</h3><p>Whiskey, honey, sour mix, and cardamom bitters, with an orange garnish.</p><span class="price">$18 / $13</span></article>
+      </div>
+    </div>
+
+    <div class="menu-cat hidden" data-cat="classics" id="classics">
       <h3>The Classics</h3>
       <p class="cat-sub">The drinks that built the martini lounge.</p>
       <div class="mi"><div class="info"><h4>Apple Martini</h4><p>Vodka and sour apple mix, with a cherry</p></div><span class="p">$16 / $11</span></div>
@@ -459,7 +631,7 @@ section{position:relative}
         <p class="tagline reveal from-l d3">&ldquo;Classy. Sassy. Definitely bad assy.&rdquo;</p>
       </div>
       <div class="owner-photos">
-        <figure class="duo" data-drift="-12"><div class="tilt"><div class="mask reveal from-r d1"><img src="WilAndCharlie.jpeg" alt="Wil Mcerlean and Charlie Bonanno, owners of Wil's Martini Lounge, embracing at the lounge" loading="lazy"></div></div><figcaption class="reveal d2">Wil &amp; Charlie, the heart of the house</figcaption></figure>
+        <figure class="duo" data-drift="-12"><div class="tilt"><div class="mask reveal from-r d1"><img src="img/WilAndCharlie.jpeg" alt="Wil Mcerlean and Charlie Bonanno, owners of Wil's Martini Lounge, embracing at the lounge" loading="lazy"></div></div><figcaption class="reveal d2">Wil &amp; Charlie, the heart of the house</figcaption></figure>
       </div>
     </div>
   </div>
@@ -474,12 +646,12 @@ section{position:relative}
       <a class="ig reveal d2" href="https://instagram.com/wilsmartinilounge" target="_blank" rel="noopener">@wilsmartinilounge</a>
     </div>
     <div class="gallery">
-      <div class="gcard" data-drift="14"><figure class="reveal"><div class="mask"><img src="Staff_Group_Shot.jpg" alt="The staff of Wil's Martini Lounge" loading="lazy"></div><figcaption>The crew</figcaption></figure></div>
-      <div class="gcard" data-drift="-10"><figure class="reveal d1"><div class="mask"><img src="Customers.jpg" alt="Guests enjoying martinis at Wil's" loading="lazy"></div><figcaption>Regulars &amp; friends</figcaption></figure></div>
-      <div class="gcard" data-drift="10"><figure class="reveal d2"><div class="mask"><img src="Wil_Owner_AtBar.JPEG" alt="Shaking martinis behind the bar at Wil's" loading="lazy"></div><figcaption>Behind the bar</figcaption></figure></div>
-      <div class="gcard" data-drift="-12"><figure class="reveal"><div class="mask"><img src="Staff_Group.jpg" alt="Bartenders at Wil's Martini Lounge" loading="lazy"></div><figcaption>Familiar faces</figcaption></figure></div>
-      <div class="gcard" data-drift="12"><figure class="reveal d1"><div class="mask"><img src="artPiece.webp" alt="Framed painting of a tuxedoed figure holding a martini inside Wil's" loading="lazy"></div><figcaption>The house muse</figcaption></figure></div>
-      <div class="gcard" data-drift="-8"><figure class="reveal d2"><div class="mask"><img class="storefront" src="frontView.png" alt="The front of Wil's Martini Lounge on Catalpa Avenue at night" loading="lazy"></div><figcaption>See you on Catalpa</figcaption></figure></div>
+      <div class="gcard" data-drift="14"><figure class="reveal"><div class="mask"><img src="img/Staff_Group_Shot.jpg" alt="The staff of Wil's Martini Lounge" loading="lazy"></div><figcaption>The crew</figcaption></figure></div>
+      <div class="gcard" data-drift="-10"><figure class="reveal d1"><div class="mask"><img src="img/Customers.jpg" alt="Guests enjoying martinis at Wil's" loading="lazy"></div><figcaption>Regulars &amp; friends</figcaption></figure></div>
+      <div class="gcard" data-drift="10"><figure class="reveal d2"><div class="mask"><img src="img/Wil_Owner_AtBar.JPEG" alt="Shaking martinis behind the bar at Wil's" loading="lazy"></div><figcaption>Behind the bar</figcaption></figure></div>
+      <div class="gcard" data-drift="-12"><figure class="reveal"><div class="mask"><img src="img/Staff_Group.jpg" alt="Bartenders at Wil's Martini Lounge" loading="lazy"></div><figcaption>Familiar faces</figcaption></figure></div>
+      <div class="gcard" data-drift="12"><figure class="reveal d1"><div class="mask"><img src="img/artPiece.webp" alt="Framed painting of a tuxedoed figure holding a martini inside Wil's" loading="lazy"></div><figcaption>The house muse</figcaption></figure></div>
+      <div class="gcard" data-drift="-8"><figure class="reveal d2"><div class="mask"><img class="storefront" src="img/frontView.png" alt="The front of Wil's Martini Lounge on Catalpa Avenue at night" loading="lazy"></div><figcaption>See you on Catalpa</figcaption></figure></div>
     </div>
     <div class="social-cta reveal">
       <a class="btn" href="https://instagram.com/wilsmartinilounge" target="_blank" rel="noopener">Follow on Instagram</a>
@@ -487,7 +659,19 @@ section{position:relative}
   </div>
 </section>
 
-<!-- ============ 6. HOURS & LOCATION ============ -->
+<!-- ============ 6. HAPPENINGS (announcements pulled from announcements.js) ============ -->
+<section class="featured happenings" id="happenings">
+  <div class="wrap">
+    <div class="featured-head">
+      <p class="eyebrow reveal">Happenings</p>
+      <h2 class="reveal d1">Worth raising a glass to</h2>
+      <p class="reveal d2">House news, special nights, and the occasional surprise.</p>
+    </div>
+    <div class="cards" id="happeningsCards"></div>
+  </div>
+</section>
+
+<!-- ============ 7. HOURS & LOCATION ============ -->
 <section class="visit" id="visit">
   <div class="wrap">
     <div class="visit-grid">
@@ -510,13 +694,13 @@ section{position:relative}
           Chicago, IL 60640
         </address>
         <div class="contact-lines reveal d2">
-          <a href="tel:+17732472135">773.247.2135</a>
-          <a href="mailto:wilsreservation@gmail.com">wilsreservation@gmail.com</a>
+          <a href="tel:+17737472135">773.747.2135</a>
+          <a href="mailto:wilsmartiniloung@gmail.com">wilsmartiniloung@gmail.com</a>
           <a href="https://instagram.com/wilsmartinilounge" target="_blank" rel="noopener">@wilsmartinilounge</a>
         </div>
         <div class="visit-cta reveal d3">
           <a class="btn btn-solid" style="padding-left:2.2rem;padding-righ:2.2rem;" href="https://maps.google.com/?q=1478+W+Catalpa+Avenue,+Chicago,+IL+60640" target="_blank" rel="noopener">Get Directions</a>
-          <a class="btn" href="mailto:cjbona1474@gmail.com?subject=Reservation%20Request">Reserve a Table</a>
+          <a class="btn" href="moon-lounge.html">Private Party Reservations</a>
         </div>
       </div>
     </div>
@@ -533,20 +717,22 @@ section{position:relative}
   <div class="footer-body">
   <p class="footer-tagline">Classy. Sassy. Definitely bad assy.</p>
   <nav class="footer-nav" aria-label="Footer">
-    <a href="#lounge">The Lounge</a>
+    <a href="#lounge">The Buzz</a>
     <a href="#menu">Menu</a>
     <a href="#owners">Wil &amp; Charlie</a>
+    <a href="#happenings" id="footHappenings">Happenings</a>
     <a href="#visit">Hours &amp; Location</a>
     <a href="https://instagram.com/wilsmartinilounge" target="_blank" rel="noopener">Instagram</a>
   </nav>
   <div class="fine">
-    <p>1478 W Catalpa Avenue, Chicago, IL 60640 &nbsp;&middot;&nbsp; 773.247.2135</p>
+    <p>1478 W Catalpa Avenue, Chicago, IL 60640 &nbsp;&middot;&nbsp; 773.747.2135</p>
     <p>Please drink responsibly. Must be 21. Proper ID required. Bartenders and servers reserve the right to deny service for any reason. Credit or debit card is required to start a tab. Any walkouts on a running tab will be closed out and a 20% gratuity will be added.</p>
     <p>&copy; <span id="yr"></span> Wil&rsquo;s Martini Lounge</p>
   </div>
   </div>
 </footer>
 
+<script src="src/announcements.js"></script>
 <script>
 (function(){
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -668,6 +854,39 @@ section{position:relative}
     });
   }
 
+  /* Step Inside strip: seamless JS marquee that eases to ~1/5 speed on
+     hover instead of stopping, so the room keeps breathing under the cursor */
+  var roomTrack = document.getElementById('roomTrack');
+  if (roomTrack && !reduced){
+    var roomOriginals = roomTrack.children.length;
+    roomTrack.innerHTML += roomTrack.innerHTML;
+    [].slice.call(roomTrack.children).slice(roomOriginals).forEach(function(c){
+      c.setAttribute('aria-hidden','true');
+    });
+    var roomRail = roomTrack.parentElement;
+    var roomX = 0, roomHalf = 0, roomSpeed = 1, roomTargetSpeed = 1, roomLast = null;
+    var ROOM_PX_PER_SEC = 72;    /* cruising pace, ~75s per lap */
+    var ROOM_HOVER_SPEED = 0.22; /* fraction of full speed while hovered */
+    function roomMeasure(){ roomHalf = roomTrack.scrollWidth / 2; }
+    roomMeasure();
+    window.addEventListener('resize', roomMeasure, {passive:true});
+    [].slice.call(roomTrack.querySelectorAll('img')).forEach(function(im){
+      if (!im.complete) im.addEventListener('load', roomMeasure, {once:true});
+    });
+    roomRail.addEventListener('mouseenter', function(){ roomTargetSpeed = ROOM_HOVER_SPEED; });
+    roomRail.addEventListener('mouseleave', function(){ roomTargetSpeed = 1; });
+    function roomFrame(ts){
+      if (roomLast === null) roomLast = ts;
+      var dt = Math.min(64, ts - roomLast); roomLast = ts;
+      roomSpeed += (roomTargetSpeed - roomSpeed) * 0.055; /* eased, no jerk */
+      roomX -= ROOM_PX_PER_SEC * roomSpeed * dt / 1000;
+      if (roomHalf > 0 && -roomX >= roomHalf) roomX += roomHalf;
+      roomTrack.style.transform = 'translate3d(' + roomX.toFixed(2) + 'px,0,0)';
+      requestAnimationFrame(roomFrame);
+    }
+    requestAnimationFrame(roomFrame);
+  }
+
   /* Menu filtering with load/unload animation */
   var tabs = document.querySelectorAll('.menu-tabs button');
   var cats = [].slice.call(document.querySelectorAll('.menu-cat'));
@@ -708,6 +927,133 @@ section{position:relative}
   window.addEventListener('resize', checkOverflow, {passive:true});
   document.getElementById('tabPrev').addEventListener('click', function(){ tabsEl.scrollBy({left:-220, behavior:'smooth'}); });
   document.getElementById('tabNext').addEventListener('click', function(){ tabsEl.scrollBy({left:220, behavior:'smooth'}); });
+
+  /* Happenings: owner announcements.
+     PRIMARY SOURCE — a Google Sheet published to the web as CSV, with
+     columns Title | Date | Text. Owners edit the sheet; the site updates
+     on the next page load. Paste the published CSV link into
+     SHEET_CSV_URL below (File → Share → Publish to web → CSV).
+     FALLBACK — src/announcements.js (window.ANNOUNCEMENTS) is used when
+     the sheet link isn't set or can't be reached, so the section still
+     works offline and on local files.
+     Section hides itself if no announcements are found anywhere. */
+  (function(){
+    var sec = document.getElementById('happenings');
+    var grid = document.getElementById('happeningsCards');
+    if (!sec || !grid) return;
+    function hideAll(){
+      sec.style.display = 'none';
+      var n1 = document.getElementById('navHappenings');
+      var n2 = document.getElementById('footHappenings');
+      if (n1) n1.style.display = 'none';
+      if (n2) n2.style.display = 'none';
+    }
+    function parse(txt){
+      return txt.split(/^[ \t]*-{3,}[ \t]*$/m).map(function(block){
+        var item = {title:'', date:'', text:''}, mode = '';
+        block.split(/\r?\n/).forEach(function(line){
+          if (line.trim().charAt(0) === '#') return;
+          var m = line.match(/^\s*(TITLE|DATE|TEXT)\s*:\s*(.*)$/i);
+          if (m){ mode = m[1].toLowerCase(); item[mode] = m[2].trim(); }
+          else if (mode === 'text' && line.trim()){ item.text += ' ' + line.trim(); }
+        });
+        return item;
+      }).filter(function(i){ return i.title || i.text; });
+    }
+    function render(items, instant){
+      items.forEach(function(item, idx){
+        var card = document.createElement('article');
+        card.className = 'card reveal' + (idx % 4 ? ' d' + (idx % 4) : '');
+        var tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = item.date || 'House News';
+        card.appendChild(tag);
+        if (item.title){
+          var h = document.createElement('h3');
+          h.textContent = item.title;
+          card.appendChild(h);
+        }
+        if (item.text){
+          var p = document.createElement('p');
+          p.textContent = item.text;
+          card.appendChild(p);
+        }
+        grid.appendChild(card);
+        /* Same entrance motion as the rest of the site; 'instant' is used
+           for silent background updates so nothing blinks */
+        if (instant || reduced || typeof io === 'undefined' || !io){ card.classList.add('in'); }
+        else { io.observe(card); }
+      });
+    }
+    var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1Nbf7qRUsLkUPj1TIodcNEGRzG-RajWPOQR7uTTag32o/gviz/tq?tqx=out:csv'; /* the Happenings Google Sheet (CSV view). Sheet must stay shared as "anyone with the link can view". */
+
+    function parseCSV(text){
+      var rows = [], row = [], cur = '', q = false;
+      for (var i = 0; i < text.length; i++){
+        var ch = text[i];
+        if (q){
+          if (ch === '"'){ if (text[i+1] === '"'){ cur += '"'; i++; } else q = false; }
+          else cur += ch;
+        }
+        else if (ch === '"') q = true;
+        else if (ch === ','){ row.push(cur); cur = ''; }
+        else if (ch === '\n'){ row.push(cur); rows.push(row); row = []; cur = ''; }
+        else if (ch !== '\r') cur += ch;
+      }
+      if (cur !== '' || row.length){ row.push(cur); rows.push(row); }
+      return rows;
+    }
+    function itemsFromSheet(csv){
+      var rows = parseCSV(csv);
+      if (!rows.length) return [];
+      var head = rows[0].map(function(h){ return h.trim().toLowerCase(); });
+      var ti = head.indexOf('title'), di = head.indexOf('date'), xi = head.indexOf('text');
+      if (ti < 0 && xi < 0){ ti = 0; di = 1; xi = 2; } /* no header row: assume column order */
+      else rows = rows.slice(1);
+      return rows.map(function(r){
+        return {
+          title: ti > -1 ? (r[ti] || '').trim() : '',
+          date:  di > -1 ? (r[di] || '').trim() : '',
+          text:  xi > -1 ? (r[xi] || '').trim() : ''
+        };
+      }).filter(function(i){ return i.title || i.text; });
+    }
+    /* Paint-first strategy: show the last known announcements immediately
+       (localStorage cache, else the bundled fallback), then refresh from
+       the Google Sheet in the background AFTER the page has loaded.
+       The DOM is only touched if the sheet content actually changed, so
+       there is no visible pause or reflow on page load. */
+    var CACHE_KEY = 'wils-happenings-v1';
+    var currentJSON = '';
+    function show(items, instant){
+      grid.innerHTML = '';
+      currentJSON = JSON.stringify(items);
+      render(items, instant);
+    }
+    var cached = null;
+    try { cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null'); } catch(e){}
+    if (cached && cached.length){
+      show(cached, false);
+    } else {
+      var fb = parse((typeof window.ANNOUNCEMENTS === 'string') ? window.ANNOUNCEMENTS : '');
+      if (fb.length){ show(fb, false); }
+    }
+    function refresh(){
+      if (!SHEET_CSV_URL){ if (!currentJSON) hideAll(); return; }
+      fetch(SHEET_CSV_URL, {cache:'no-store'})
+        .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(function(csv){
+          var items = itemsFromSheet(csv);
+          if (items.length){
+            try { localStorage.setItem(CACHE_KEY, JSON.stringify(items)); } catch(e){}
+            if (JSON.stringify(items) !== currentJSON){ show(items, true); }
+          } else if (!currentJSON){ hideAll(); }
+        })
+        .catch(function(){ if (!currentJSON) hideAll(); });
+    }
+    if (document.readyState === 'complete'){ setTimeout(refresh, 0); }
+    else { window.addEventListener('load', function(){ setTimeout(refresh, 400); }); }
+  })();
 
   /* Scrollspy: highlight section currently in view in the nav */
   var spyMap = {};
