@@ -165,7 +165,8 @@ section{position:relative}
 .roomstrip-head h2{font-size:clamp(2rem,4.2vw,3.2rem)}
 .roomstrip-head p{color:var(--muted);margin-top:14px;font-family:var(--serif);font-style:italic}
 .roomstrip-rail{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 6%,#000 94%,transparent 100%)}
-.roomstrip-track{display:flex;width:max-content;will-change:transform}
+.roomstrip-track{display:flex;width:max-content;will-change:transform;animation:room-flow 75s linear infinite}
+@keyframes room-flow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .roomstrip-track figure{margin:0 18px 0 0;overflow:hidden;flex:0 0 auto}
 .roomstrip-track img{height:min(380px,46vh);width:auto;display:block;filter:brightness(.94) saturate(.98);transition:filter .5s,transform .9s cubic-bezier(.22,.61,.36,1)}
 .roomstrip-track figure:hover img{filter:brightness(1.06) saturate(1.05);transform:scale(1.045)}
@@ -175,6 +176,7 @@ section{position:relative}
   .roomstrip-track figure{margin-right:12px}
 }
 @media (prefers-reduced-motion:reduce){
+  .roomstrip-track{animation:none}
   .roomstrip-rail{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
 }
 
@@ -463,18 +465,18 @@ section{position:relative}
   </div>
   <div class="roomstrip-rail reveal">
     <div class="roomstrip-track" id="roomTrack">
-      <figure><img src="img/lounge/wils1.jpg" alt="The full bar at Wil's with blue leather stools under a copper tin ceiling" loading="lazy"></figure>
-      <figure><img src="img/lounge/wils6.jpg" alt="Backlit glassware shelves and pendant globes behind the bar" loading="lazy"></figure>
-      <figure><img src="img/lounge/wils2.jpg" alt="Lounge seating with warm table lamps at Wil's" loading="lazy"></figure>
-      <figure><img src="img/lounge/Wils3.jpg" alt="Interior detail at Wil's Martini Lounge" loading="lazy"></figure>
-      <figure><img src="img/lounge/wils5.jpg" alt="The bar and seating area at Wil's" loading="lazy"></figure>
-      <figure><img src="img/lounge/wils12.jpg" alt="Interior detail at Wil's Martini Lounge" loading="lazy"></figure>
-      <figure><img src="img/lounge/wils10.jpg" alt="The lounge floor at Wil's Martini Lounge" loading="lazy"></figure>
-      <figure><img src="img/lounge/wils13.jpg" alt="Interior detail at Wil's Martini Lounge" loading="lazy"></figure>
-      <figure><img src="img/lounge/wils11.jpg" alt="Seating and lighting inside Wil's" loading="lazy"></figure>
-      <figure><img src="img/lounge/wils9.jpg" alt="Interior detail at Wil's Martini Lounge" loading="lazy"></figure>
-      <figure><img src="img/lounge/wils7.jpg" alt="The bar at Wil's Martini Lounge" loading="lazy"></figure>
-      <figure><img src="img/lounge/Wils4.jpg" alt="Interior of Wil's Martini Lounge" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils1.jpg" width="640" height="480" alt="The full bar at Wil's with blue leather stools under a copper tin ceiling" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils6.jpg" width="480" height="640" alt="Backlit glassware shelves and pendant globes behind the bar" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils2.jpg" width="640" height="480" alt="Lounge seating with warm table lamps at Wil's" loading="lazy"></figure>
+      <figure><img src="img/lounge/Wils3.jpg" width="480" height="640" alt="Interior detail at Wil's Martini Lounge" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils5.jpg" width="640" height="480" alt="The bar and seating area at Wil's" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils12.jpg" width="480" height="640" alt="Interior detail at Wil's Martini Lounge" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils10.jpg" width="640" height="480" alt="The lounge floor at Wil's Martini Lounge" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils13.jpg" width="480" height="640" alt="Interior detail at Wil's Martini Lounge" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils11.jpg" width="640" height="480" alt="Seating and lighting inside Wil's" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils9.jpg" width="480" height="640" alt="Interior detail at Wil's Martini Lounge" loading="lazy"></figure>
+      <figure><img src="img/lounge/wils7.jpg" width="640" height="480" alt="The bar at Wil's Martini Lounge" loading="lazy"></figure>
+      <figure><img src="img/lounge/Wils4.jpg" width="640" height="512" alt="Interior of Wil's Martini Lounge" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -854,8 +856,9 @@ section{position:relative}
     });
   }
 
-  /* Step Inside strip: seamless JS marquee that eases to ~1/5 speed on
-     hover instead of stopping, so the room keeps breathing under the cursor */
+  /* Step Inside strip: compositor-driven CSS marquee (stays smooth even
+     when the main thread is busy). Hover eases playback to ~1/5 speed via
+     the Web Animations API instead of stopping — no per-frame JS work. */
   var roomTrack = document.getElementById('roomTrack');
   if (roomTrack && !reduced){
     var roomOriginals = roomTrack.children.length;
@@ -864,27 +867,32 @@ section{position:relative}
       c.setAttribute('aria-hidden','true');
     });
     var roomRail = roomTrack.parentElement;
-    var roomX = 0, roomHalf = 0, roomSpeed = 1, roomTargetSpeed = 1, roomLast = null;
-    var ROOM_PX_PER_SEC = 72;    /* cruising pace, ~75s per lap */
-    var ROOM_HOVER_SPEED = 0.22; /* fraction of full speed while hovered */
-    function roomMeasure(){ roomHalf = roomTrack.scrollWidth / 2; }
-    roomMeasure();
-    window.addEventListener('resize', roomMeasure, {passive:true});
-    [].slice.call(roomTrack.querySelectorAll('img')).forEach(function(im){
-      if (!im.complete) im.addEventListener('load', roomMeasure, {once:true});
-    });
-    roomRail.addEventListener('mouseenter', function(){ roomTargetSpeed = ROOM_HOVER_SPEED; });
-    roomRail.addEventListener('mouseleave', function(){ roomTargetSpeed = 1; });
-    function roomFrame(ts){
-      if (roomLast === null) roomLast = ts;
-      var dt = Math.min(64, ts - roomLast); roomLast = ts;
-      roomSpeed += (roomTargetSpeed - roomSpeed) * 0.055; /* eased, no jerk */
-      roomX -= ROOM_PX_PER_SEC * roomSpeed * dt / 1000;
-      if (roomHalf > 0 && -roomX >= roomHalf) roomX += roomHalf;
-      roomTrack.style.transform = 'translate3d(' + roomX.toFixed(2) + 'px,0,0)';
-      requestAnimationFrame(roomFrame);
+    var roomAnim = null, roomRamp = null;
+    function getRoomAnim(){
+      if (!roomAnim && roomTrack.getAnimations){
+        var as = roomTrack.getAnimations();
+        if (as.length) roomAnim = as[0];
+      }
+      return roomAnim;
     }
-    requestAnimationFrame(roomFrame);
+    function setRate(a, r){
+      if (a.updatePlaybackRate) a.updatePlaybackRate(r);
+      else a.playbackRate = r;
+    }
+    function rampTo(target){
+      var a = getRoomAnim();
+      if (!a){ return; } /* no WAAPI: strip just keeps cruising */
+      if (roomRamp) cancelAnimationFrame(roomRamp);
+      (function step(){
+        var cur = a.playbackRate;
+        var next = cur + (target - cur) * 0.12;
+        if (Math.abs(next - target) < 0.01){ setRate(a, target); roomRamp = null; return; }
+        setRate(a, next);
+        roomRamp = requestAnimationFrame(step);
+      })();
+    }
+    roomRail.addEventListener('mouseenter', function(){ rampTo(0.18); });
+    roomRail.addEventListener('mouseleave', function(){ rampTo(1); });
   }
 
   /* Menu filtering with load/unload animation */
