@@ -2988,10 +2988,13 @@
               b.classList.remove("active");
             });
             t.classList.add("active");
-            t.scrollIntoView({
+            /* Scroll only the tab strip to center the active tab.
+               scrollIntoView() bubbles to the window and shifts the whole
+               page horizontally, so scope the scroll to the strip itself. */
+            var strip = t.parentElement;
+            strip.scrollTo({
+              left: t.offsetLeft - (strip.clientWidth - t.offsetWidth) / 2,
               behavior: reduced ? "auto" : "smooth",
-              block: "nearest",
-              inline: "center",
             });
             var target = cats.find(function (c) {
               return c.getAttribute("data-cat") === t.getAttribute("data-cat");
