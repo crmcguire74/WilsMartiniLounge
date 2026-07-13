@@ -1840,7 +1840,7 @@
         </video>
         <div class="scrim"></div>
       </div>
-      <div class="menu-inner wrap" id="menu">
+      <div class="menu-inner wrap">
         <div class="menu-head">
           <p class="eyebrow reveal">The Full Menu</p>
           <h2 class="reveal d1">Wil&rsquo;s Martini Lounge</h2>
@@ -1855,7 +1855,7 @@
           >
             &#8249;
           </button>
-          <nav class="menu-tabs" id="menuTabs" aria-label="Menu categories">
+          <nav class="menu-tabs" id="menu" aria-label="Menu categories">
             <button class="active" data-cat="featured">Featured</button>
             <button data-cat="classics">The Classics</button>
             <button data-cat="signature">Signature Martinis</button>
@@ -3024,7 +3024,7 @@
         });
 
         /* Tab overflow arrows */
-        var tabsEl = document.getElementById("menuTabs");
+        var tabsEl = document.getElementById("menu");
         var tabsWrap = tabsEl.parentElement;
         function checkOverflow() {
           tabsWrap.classList.toggle(
