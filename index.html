@@ -48,6 +48,7 @@
     />
     <meta name="geo.region" content="US-IL" />
     <meta name="geo.placename" content="Chicago" />
+    <meta name="author" content="Christopher R McGuire" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -1430,60 +1431,73 @@
       }
     </style>
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BarOrPub",
-        "name": "Wil's Martini Lounge",
-        "description": "Intimate martini bar in Andersonville, Chicago serving classic and signature martinis, mocktails, sweetinis, and wine.",
-        "url": "https://wilsmartinilounge.com/",
-        "image": "https://wilsmartinilounge.com/img/lounge/wils1.jpg",
-        "logo": "https://wilsmartinilounge.com/img/logo_white.svg",
-        "telephone": "+1-773-747-2135",
-        "email": "wilsmartinilounge@gmail.com",
-        "priceRange": "$$",
-        "servesCuisine": "Cocktails",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "1478 W Catalpa Avenue",
-          "addressLocality": "Chicago",
-          "addressRegion": "IL",
-          "postalCode": "60640",
-          "addressCountry": "US"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 41.9818467,
-          "longitude": -87.6679687
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-            "opens": "16:00",
-            "closes": "01:00"
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "BarOrPub",
+          "name": "Wil's Martini Lounge",
+          "description": "Intimate martini bar in Andersonville, Chicago serving classic and signature martinis, mocktails, sweetinis, and wine.",
+          "url": "https://wilsmartinilounge.com/",
+          "image": "https://wilsmartinilounge.com/img/lounge/wils1.jpg",
+          "logo": "https://wilsmartinilounge.com/img/logo_white.svg",
+          "telephone": "+1-773-747-2135",
+          "email": "wilsmartinilounge@gmail.com",
+          "priceRange": "$$",
+          "servesCuisine": "Cocktails",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1478 W Catalpa Avenue",
+            "addressLocality": "Chicago",
+            "addressRegion": "IL",
+            "postalCode": "60640",
+            "addressCountry": "US"
           },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Friday", "Saturday"],
-            "opens": "15:00",
-            "closes": "02:00"
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 41.9818467,
+            "longitude": -87.6679687
           },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Sunday",
-            "opens": "14:00",
-            "closes": "01:00"
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+              "opens": "16:00",
+              "closes": "01:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Friday", "Saturday"],
+              "opens": "15:00",
+              "closes": "02:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Sunday",
+              "opens": "14:00",
+              "closes": "01:00"
+            }
+          ],
+          "sameAs": [
+            "https://instagram.com/wilsmartinilounge",
+            "https://chicago.gaycities.com/bars/312511-wils-martini-lounge"
+          ],
+          "founder": [
+            { "@type": "Person", "name": "Wil Mcerlean" },
+            { "@type": "Person", "name": "Charlie Bonanno" }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Wil's Martini Lounge",
+          "url": "https://wilsmartinilounge.com/",
+          "creator": {
+            "@type": "Person",
+            "name": "Christopher R McGuire",
+            "url": "https://paguire.com"
           }
-        ],
-        "sameAs": [
-          "https://instagram.com/wilsmartinilounge",
-          "https://chicago.gaycities.com/bars/312511-wils-martini-lounge"
-        ],
-        "founder": [
-          { "@type": "Person", "name": "Wil Mcerlean" },
-          { "@type": "Person", "name": "Charlie Bonanno" }
-        ]
-      }
+        }
+      ]
     </script>
   </head>
   <body style="overflow-x: hidden">
@@ -2705,6 +2719,9 @@
           </p>
           <p>&copy; <span id="yr"></span> Wil&rsquo;s Martini Lounge</p>
         </div>
+      </div>
+      <div class="designer-credit" style="text-align: center; padding: 20px; font-size: 12px; color: var(--muted); font-family: var(--sans);">
+          Site designed and developed by <a href="https://paguire.com" target="_blank" rel="noopener" style="color: var(--amber); text-decoration: none; transition: color 0.25s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--amber)'">Christopher R McGuire</a>
       </div>
     </footer>
 
