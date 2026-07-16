@@ -3,6 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ============================================================
+         Google Analytics 4 (gtag.js)
+         Measurement ID is set below (window.WILS_GA_ID) — same id as
+         index.html so both pages report to one stream. <<<
+         ============================================================ -->
+    <script>
+      window.WILS_GA_ID = "G-9Y0SW377G2"; /* GA4 Measurement ID — Wil's Martini Lounge */
+      (function (id) {
+        if (!id || id.indexOf("XXXX") > -1) return; /* not configured yet — stay silent */
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag("js", new Date());
+        window.gtag("config", id);
+      })(window.WILS_GA_ID);
+    </script>
+
     <title>Moon Lounge Private Party Reservations — Wil's Martini Lounge</title>
     <meta
       name="description"
@@ -975,6 +996,7 @@
       </div>
     </footer>
 
+    <script src="src/analytics.js"></script>
     <script>
       (function () {
         var reduced = window.matchMedia(
@@ -1030,6 +1052,28 @@
                 rsvForm.style.display = "none";
                 status.textContent =
                   "Request received — we’ll get back to you shortly. Cheers!";
+                /* GA4 conversion: a real reservation lead. Value = the
+                   reservation fee ($800 Fri/Sat, $500 otherwise). No PII sent. */
+                try {
+                  var dateVal = (rsvForm.elements["preferred_date"] || {}).value || "";
+                  var day = dateVal ? new Date(dateVal + "T12:00:00").getDay() : -1;
+                  var fee = day === 5 || day === 6 ? 800 : 500;
+                  var size = parseInt(
+                    (rsvForm.elements["party_size"] || {}).value,
+                    10,
+                  );
+                  if (typeof window.wilsTrack === "function") {
+                    window.wilsTrack("generate_lead", {
+                      currency: "USD",
+                      value: fee,
+                      lead_type: "moon_lounge_rental",
+                      party_size: isNaN(size) ? undefined : size,
+                      link_location: "reservation_form",
+                    });
+                  }
+                } catch (err) {
+                  /* never block the confirmation on analytics */
+                }
               })
               .catch(function () {
                 status.textContent =

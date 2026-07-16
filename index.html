@@ -3,6 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ============================================================
+         Google Analytics 4 (gtag.js)
+         Measurement ID is set below (window.WILS_GA_ID). To move this
+         site to a different GA4 property, change that one value here and
+         in moon-lounge.html. <<<
+         ============================================================ -->
+    <script>
+      window.WILS_GA_ID = "G-9Y0SW377G2"; /* GA4 Measurement ID — Wil's Martini Lounge */
+      (function (id) {
+        if (!id || id.indexOf("XXXX") > -1) return; /* not configured yet — stay silent */
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag("js", new Date());
+        window.gtag("config", id);
+      })(window.WILS_GA_ID);
+    </script>
+
     <title>
       Wil&rsquo;s Martini Lounge | Martini Bar in Andersonville, Chicago
     </title>
@@ -2729,6 +2751,7 @@
     </footer>
 
     <script src="src/announcements.js"></script>
+    <script src="src/analytics.js"></script>
     <script>
       (function () {
         var reduced = window.matchMedia(
